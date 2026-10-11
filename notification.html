@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"inverse-on-surface":"#eaf1ff","inverse-surface":"#213145","surface":"#f8f9ff","on-surface-variant":"#534434","tertiary-container":"#50c594","on-primary-container":"#613b00","on-secondary-fixed":"#131b2e","on-tertiary":"#ffffff","on-primary":"#ffffff","on-error-container":"#93000a","primary-container":"#f59e0b","outline":"#867461","error":"#ba1a1a","surface-container-lowest":"#ffffff","tertiary":"#006c4a","inverse-primary":"#ffb95f","surface-dim":"#cbdbf5","surface-container-high":"#dce9ff","on-tertiary-container":"#004e35","on-tertiary-fixed":"#002114","on-surface":"#0b1c30","on-secondary-container":"#5c647a","on-background":"#0b1c30","on-secondary-fixed-variant":"#3f465c","tertiary-fixed":"#85f8c4","secondary-fixed-dim":"#bec6e0","surface-container":"#e5eeff","surface-variant":"#d3e4fe","on-primary-fixed":"#2a1700","outline-variant":"#d8c3ad","surface-container-highest":"#d3e4fe","secondary-fixed":"#dae2fd","primary-fixed-dim":"#ffb95f","tertiary-fixed-dim":"#68dba9","surface-bright":"#f8f9ff","surface-tint":"#855300","secondary-container":"#dae2fd","background":"#f8f9ff","primary-fixed":"#ffddb8","secondary":"#565e74","surface-container-low":"#eff4ff","on-secondary":"#ffffff","error-container":"#ffdad6","on-primary-fixed-variant":"#653e00","primary":"#855300","on-tertiary-fixed-variant":"#005137","on-error":"#ffffff"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-xs":"0.5rem","grid-max-width":"75rem","space-2xs":"0.25rem","space-lg":"1.5rem","space-md":"1rem","space-sm":"0.75rem","gutter-desktop":"1.5rem","space-2xl":"3rem","space-3xl":"4rem","gutter-mobile":"1rem","space-xl":"2rem"},"fontFamily":{"label-lg":["Plus Jakarta Sans"],"display-hero":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"display-hero-mobile":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"label-caps":["Plus Jakarta Sans"]},"fontSize":{"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.01em","fontWeight":"600"}],"display-hero":["44px",{"lineHeight":"52px","letterSpacing":"-0.02em","fontWeight":"800"}],"headline-lg":["22px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"700"}],"headline-md":["18px",{"lineHeight":"24px","letterSpacing":"-0.005em","fontWeight":"600"}],"display-hero-mobile":["32px",{"lineHeight":"40px","letterSpacing":"-0.015em","fontWeight":"800"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"600"}],"headline-xl":["30px",{"lineHeight":"38px","letterSpacing":"-0.015em","fontWeight":"700"}],"headline-xl-mobile":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"700"}],"label-caps":["11px",{"lineHeight":"14px","letterSpacing":"0.06em","fontWeight":"700"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased min-h-screen flex flex-col justify-between"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 max-w-[75rem] mx-auto px-gutter-mobile lg:px-gutter-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md"><img alt="Etiqa logo" class="h-8 w-auto object-contain" src="etiqa-logo.svg"/><div class="hidden sm:flex flex-col"><span class="font-headline-md text-headline-md text-on-surface">Etiqa</span><span class="font-label-caps text-label-caps uppercase text-on-surface-variant tracking-wider">Weekly Bingo Challenge</span></div></div><nav class="hidden xl:flex items-center gap-space-xs" data-active-classes="bg-primary-container text-on-primary-container font-label-lg text-label-lg rounded-lg"><a class="px-space-sm py-space-xs font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded-lg transition-colors" data-path="campaign-overview" href="#">Campaign Overview</a><a aria-current="page" class="px-space-sm py-space-xs transition-colors bg-primary-container text-on-primary-container font-label-lg text-label-lg rounded-lg" data-path="my-bingo-card" href="#">My Bingo Card</a><a class="px-space-sm py-space-xs font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface rounded-lg transition-colors" data-path="live-weekly-draw" href="#">Live Weekly Draw</a></nav><div class="flex items-center gap-space-sm"><div class="flex items-center gap-space-sm px-space-sm py-space-xs bg-surface-container rounded-full shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col text-right hidden md:flex"><span class="font-label-md text-label-md text-on-surface">Ahmad Razak</span><span class="font-label-caps text-label-caps text-tertiary uppercase">Premier Member</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-primary-container" src="https://lh3.googleusercontent.com/aida/AEtjO1V4WyMhL4YfAqEcr4k1D8622WrYTpEAryPyw_bwxo_KI00NcmsIFnvL4RK_FdYOaeMuxCE90ZhekPtQMVQXL4DgqfaI8s8FKxPcHILBhZd55nUpuKNgrt1Md_jxPxKV8ZDw3P2xqO7NtdvaQtbWrWcaYy5Od18FTkI2JrmUnz57qxSJXUY5jwaX5TyyZ1wDery9MxTXqRsbBUre_vIt-W30CA_d-UAGLD3DuNw5lfRJ3-xYTg7DzAHm"/></div></div></div></header><main class="w-full pt-20 bg-surface flex-1"><div class="flex flex-col w-full relative overflow-hidden">
+<!-- Dynamic Ambient Glow Background Layers -->
+<div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[55rem] h-[55rem] bg-gradient-to-b from-primary-fixed/25 via-tertiary-fixed/15 to-transparent rounded-full blur-3xl pointer-events-none -z-10"></div>
+<div class="absolute top-80 -right-24 w-96 h-96 bg-primary-container/10 rounded-full blur-2xl pointer-events-none -z-10"></div>
+<div class="absolute top-96 -left-20 w-96 h-96 bg-tertiary-container/15 rounded-full blur-2xl pointer-events-none -z-10"></div>
+<!-- Main Invitation Stage Container -->
+<div class="w-full max-w-[75rem] mx-auto px-gutter-mobile lg:px-gutter-desktop py-space-xl lg:py-space-2xl flex flex-col items-center">
+<!-- Trust & Verification Overhead Header -->
+<div class="flex flex-wrap items-center justify-center gap-space-sm mb-space-md">
+<div class="flex items-center gap-space-2xs px-space-sm py-1 bg-surface-container-highest/80 backdrop-blur-md rounded-full shadow-sm">
+<span class="material-symbols-outlined text-tertiary text-[16px]">verified</span>
+<span class="font-label-caps text-label-caps text-on-surface uppercase tracking-wider">Verified Etiqa Takaful &amp; Protection Challenge</span>
+</div>
+<div class="hidden sm:flex items-center gap-1 text-on-surface-variant font-label-md text-label-md">
+<span>Session ID:</span>
+<span class="font-mono text-on-surface font-semibold">ETQ-2025-W12</span>
+</div>
+</div>
+<!-- Centered Elevated Game Invite Card -->
+<div class="w-full max-w-4xl bg-surface-container-lowest/95 backdrop-blur-2xl rounded-2xl shadow-xl p-space-lg md:p-space-2xl relative">
+<!-- Live Match Status Banner -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-sm pb-space-lg mb-space-lg bg-surface-container-low/60 -mx-space-lg md:-mx-space-2xl -mt-space-lg md:-mt-space-2xl px-space-lg md:px-space-2xl pt-space-lg rounded-t-2xl">
+<div class="flex items-center gap-space-sm">
+<span class="relative flex h-3.5 w-3.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-tertiary"></span>
+</span>
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg text-tertiary uppercase tracking-wider font-bold">LIVE ROUND IN PROGRESS</span>
+<span class="text-on-surface-variant text-body-sm font-semibold">•</span>
+<span class="font-label-md text-label-md text-on-surface-variant font-semibold">Round 12 of 12</span>
+</div>
+</div>
+<!-- Real-Time Policyholder Counter Badge -->
+<div class="flex items-center gap-space-xs px-space-sm py-1 bg-surface-container-lowest rounded-full shadow-sm">
+<span class="material-symbols-outlined text-primary-container text-[18px]">group</span>
+<span class="font-label-md text-label-md text-on-surface">
+<strong class="font-bold text-on-surface" id="liveUserCounter" data-active-player-count data-active-player-count-format="number">Loading...</strong> active policyholders
+          </span>
+</div>
+</div>
+<!-- Core Content Block -->
+<div class="text-center flex flex-col items-center">
+<!-- Overline category -->
+<span class="font-label-caps text-label-caps text-primary uppercase tracking-widest mb-space-xs font-extrabold">Etiqa Hibah &amp; Wellness Season</span>
+<!-- Primary Question Headline -->
+<h1 class="font-display-hero text-display-hero text-on-surface mb-space-xs tracking-tight">
+          Do You Want to Play Bingo?
+        </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-space-xl">
+          Join <span data-active-player-count data-active-player-count-format="number">Loading...</span> active policyholders in this week's live draw for a guaranteed share of the <strong class="text-on-surface font-semibold">RM 250,000 Hibah Prize Pool</strong>. Match weekly wellness habits, answer quizzes, and claim your instant protection rewards.
+        </p>
+<!-- 3D-Styled Bingo Sphere Cluster -->
+<div class="flex flex-wrap items-center justify-center gap-space-sm sm:gap-space-md mb-space-xl">
+<!-- Ball B -->
+<div class="flex flex-col items-center group">
+<div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-primary-fixed via-primary-container to-on-primary-container shadow-md flex items-center justify-center relative transform group-hover:-translate-y-1 transition-transform duration-200">
+<div class="absolute inset-1 rounded-full bg-gradient-to-t from-black/20 via-transparent to-white/40 pointer-events-none"></div>
+<div class="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-surface-container-lowest shadow-inner flex items-center justify-center">
+<span class="font-headline-md text-headline-md text-on-surface font-extrabold">B-12</span>
+</div>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant mt-1.5 uppercase">Health</span>
+</div>
+<!-- Ball I -->
+<div class="flex flex-col items-center group">
+<div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-tertiary-fixed via-tertiary to-on-tertiary-container shadow-md flex items-center justify-center relative transform group-hover:-translate-y-1 transition-transform duration-200">
+<div class="absolute inset-1 rounded-full bg-gradient-to-t from-black/20 via-transparent to-white/40 pointer-events-none"></div>
+<div class="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-surface-container-lowest shadow-inner flex items-center justify-center">
+<span class="font-headline-md text-headline-md text-on-surface font-extrabold">I-24</span>
+</div>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant mt-1.5 uppercase">Takaful</span>
+</div>
+<!-- Ball N (Golden Center / Free) -->
+<div class="flex flex-col items-center group">
+<div class="w-18 h-18 sm:w-24 sm:h-24 -mt-2 rounded-full bg-gradient-to-br from-primary-fixed via-primary-container to-primary shadow-xl flex items-center justify-center relative transform group-hover:scale-105 transition-transform duration-200">
+<div class="absolute inset-1 rounded-full bg-gradient-to-t from-black/25 via-transparent to-white/60 pointer-events-none"></div>
+<div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-surface-container-lowest shadow-inner flex flex-col items-center justify-center">
+<span class="material-symbols-outlined text-primary-container text-[18px]">workspace_premium</span>
+<span class="font-label-caps text-label-caps text-primary font-black">FREE</span>
+</div>
+</div>
+<span class="font-label-caps text-label-caps text-primary font-bold mt-1.5 uppercase">Community</span>
+</div>
+<!-- Ball G -->
+<div class="flex flex-col items-center group">
+<div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-tertiary-fixed via-tertiary to-on-tertiary-container shadow-md flex items-center justify-center relative transform group-hover:-translate-y-1 transition-transform duration-200">
+<div class="absolute inset-1 rounded-full bg-gradient-to-t from-black/20 via-transparent to-white/40 pointer-events-none"></div>
+<div class="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-surface-container-lowest shadow-inner flex items-center justify-center">
+<span class="font-headline-md text-headline-md text-on-surface font-extrabold">G-55</span>
+</div>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant mt-1.5 uppercase">Eco-Drive</span>
+</div>
+<!-- Ball O -->
+<div class="flex flex-col items-center group">
+<div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-primary-fixed via-primary-container to-on-primary-container shadow-md flex items-center justify-center relative transform group-hover:-translate-y-1 transition-transform duration-200">
+<div class="absolute inset-1 rounded-full bg-gradient-to-t from-black/20 via-transparent to-white/40 pointer-events-none"></div>
+<div class="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-surface-container-lowest shadow-inner flex items-center justify-center">
+<span class="font-headline-md text-headline-md text-on-surface font-extrabold">O-72</span>
+</div>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant mt-1.5 uppercase">Savings</span>
+</div>
+</div>
+<!-- Primary Dual Decision Buttons (Side by Side) -->
+<div class="w-full max-w-xl flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-space-md mb-space-xl">
+<!-- Positive Affirmative: Yes, Play Now! -->
+<a class="flex-1 py-4 px-8 bg-tertiary hover:bg-on-tertiary-container text-on-tertiary rounded-xl shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-space-sm text-center" data-path="my-bingo-card" href="#">
+<span class="material-symbols-outlined text-[24px]">check_circle</span>
+<div class="flex flex-col text-left">
+<span class="font-headline-md text-headline-md font-bold tracking-tight">Yes, Play Now!</span>
+<span class="font-body-sm text-body-sm text-tertiary-fixed font-medium">Claim your 5x5 digital card</span>
+</div>
+<span class="material-symbols-outlined text-[20px] ml-auto">arrow_forward</span>
+</a>
+<!-- Negative Decision: No, Maybe Later -->
+<button class="flex-1 py-4 px-8 bg-error hover:bg-on-error-container text-on-error rounded-xl shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-space-sm text-center" id="declineBtn" type="button">
+<span class="material-symbols-outlined text-[24px]">cancel</span>
+<div class="flex flex-col text-left">
+<span class="font-headline-md text-headline-md font-bold tracking-tight">No, Maybe Later</span>
+<span class="font-body-sm text-body-sm text-error-container font-medium">Skip this round &amp; save place</span>
+</div>
+<span class="material-symbols-outlined text-[20px] ml-auto">close</span>
+</button>
+</div>
+<!-- Quick Info Highlights Matrix -->
+<div class="w-full grid grid-cols-1 md:grid-cols-3 gap-space-md pt-space-lg bg-surface-container-low/70 rounded-xl p-space-md">
+<!-- Item 1: Card Ready -->
+<div class="flex items-start gap-space-sm text-left">
+<div class="w-10 h-10 rounded-lg bg-tertiary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-tertiary text-[20px]">grid_view</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Card Authenticated</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Your verified 5x5 matrix is encrypted and allocated to Certificate #ETQ-9914.</p>
+</div>
+</div>
+<!-- Item 2: Zero Purchase -->
+<div class="flex items-start gap-space-sm text-left">
+<div class="w-10 h-10 rounded-lg bg-primary-container/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[20px]">verified_user</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Free Policyholder Entry</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">No mandatory fees. Complies fully with Shariah-compliant Hibah principles.</p>
+</div>
+</div>
+<!-- Item 3: Countdown Timer -->
+<div class="flex items-start gap-space-sm text-left">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">timer</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Live Ball Drop</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Next verification ball drops in <span class="font-bold text-error font-mono" id="countdownTimer">00:03s</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Alternatives Panel & Prize Pool Preview -->
+<div class="w-full max-w-4xl mt-space-xl grid grid-cols-1 lg:grid-cols-3 gap-space-md">
+<!-- Option: Deferral & Reminder Controls -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-2xs mb-space-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">schedule</span>
+<span class="font-label-lg text-label-lg text-on-surface">Not ready right now?</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+            You won't forfeit your streak if you play before Sunday 11:59 PM. Choose a preferred alternative:
+          </p>
+</div>
+<div class="flex flex-col gap-space-xs">
+<button class="w-full py-space-xs px-space-sm bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md rounded-lg transition-colors flex items-center justify-between" id="remindBtn" type="button">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">notifications_active</span>
+              Remind me in 15 minutes
+            </span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+<a class="w-full py-space-xs px-space-sm bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md rounded-lg transition-colors flex items-center justify-between" data-path="campaign-overview" href="#">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+              Return to Campaign Overview
+            </span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+</div>
+<!-- Weekly Prize Pool Live Snapshot (Col-span 2) -->
+<div class="lg:col-span-2 bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-caps text-label-caps text-primary uppercase font-bold tracking-wider">Round 12 Guaranteed Payouts</span>
+<span class="font-label-caps text-label-caps px-2 py-0.5 bg-tertiary-fixed/30 text-on-tertiary-container rounded">Audited Hibah</span>
+</div>
+<span class="font-headline-md text-headline-md text-on-surface mb-space-xs">This Week's Live Prize Pool</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Instant payouts directly into your linked Maybank or DuitNow e-Wallet upon row completion.</p>
+<!-- Reward Tiers Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-xs">
+<div class="p-space-sm bg-surface-container-low rounded-lg flex flex-col">
+<span class="font-label-caps text-label-caps text-primary-container font-extrabold uppercase">5 Lines Complete</span>
+<span class="font-headline-lg text-headline-lg text-on-surface font-extrabold">RM 10,000</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Grand Hibah Cash Pool</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg flex flex-col">
+<span class="font-label-caps text-label-caps text-tertiary font-extrabold uppercase">3 Lines Complete</span>
+<span class="font-headline-lg text-headline-lg text-on-surface font-extrabold">RM 3,750</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Medical Coverage Rebate</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg flex flex-col">
+<span class="font-label-caps text-label-caps text-on-secondary-container font-extrabold uppercase">Any 1 Line</span>
+<span class="font-headline-lg text-headline-lg text-on-surface font-extrabold">RM 50</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Etiqa Smile Voucher</span>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between text-on-surface-variant">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-tertiary">check_circle</span>
+<span class="font-body-sm text-body-sm">4,912 rewards claimed already this round</span>
+</div>
+<a class="font-label-md text-label-md text-primary hover:underline flex items-center gap-1" data-path="winners-and-rewards" href="#">
+            View Past Winners
+            <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Regulatory Footnote Compliance Tag -->
+<div class="w-full max-w-4xl mt-space-md text-center">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        Licensed by Bank Negara Malaysia (BNM). Eligible takaful certificates and insurance policies are protected by PIDM up to statutory limits. The Weekly Bingo Challenge operates under strict Shariah Hibah governance guidelines.
+      </p>
+</div>
+</div>
+<!-- Decline Confirmation Toast / Sheet (Initially Hidden) -->
+<div class="fixed inset-0 bg-on-surface/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden" id="declineModal">
+<div class="w-full max-w-md bg-surface-container-lowest rounded-2xl shadow-2xl p-space-lg text-center flex flex-col items-center">
+<div class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center mb-space-sm">
+<span class="material-symbols-outlined text-secondary text-[32px]">pause_circle</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-space-xs">Round Paused</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-lg">
+        No worries, Ahmad. We've preserved your 4-week active streak. You can re-enter this round before Sunday 11:59 PM.
+      </p>
+<div class="w-full flex flex-col gap-space-xs">
+<a class="w-full py-3 bg-secondary hover:bg-on-secondary-fixed text-on-secondary font-label-lg text-label-lg rounded-xl transition-colors" data-path="campaign-overview" href="#">
+          Go to Campaign Dashboard
+        </a>
+<button class="w-full py-3 bg-surface-container hover:bg-surface-container-high text-on-surface font-label-lg text-label-lg rounded-xl transition-colors" id="resumeBtn" type="button">
+          Wait, I changed my mind — Let's Play!
+        </button>
+</div>
+</div>
+</div>
+<!-- Reminder Confirmation Banner (Toast) -->
+<div class="fixed bottom-6 right-6 bg-surface-container-highest/95 backdrop-blur-md shadow-xl rounded-xl p-space-sm flex items-center gap-space-sm z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none" id="reminderToast">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined text-[20px]">alarm</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Reminder Scheduled</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">We'll alert you 15 minutes before the next live call.</span>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    const openGame = (mode) => {
+      const destination = new URL('Game/game.html', window.location.href);
+      destination.searchParams.set('mode', mode);
+      window.location.href = destination.toString();
+    };
+
+    const openSpectatorMode = () => {
+      openGame('spectate');
+    };
+
+    const openNameEntry = () => {
+      window.location.href = new URL('name.html', window.location.href).toString();
+    };
+
+    // Dynamic countdown timer for next ball drop
+    let timeLeft = 3;
+    const timerElement = document.getElementById('countdownTimer');
+    
+    if (timerElement) {
+      setInterval(function() {
+        timeLeft--;
+        if (timeLeft < 0) {
+          timeLeft = 3;
+        }
+        const formatted = timeLeft < 10 ? '0' + timeLeft : timeLeft;
+        timerElement.textContent = '00:' + formatted + 's';
+      }, 1000);
+    }
+
+    const playLinks = document.querySelectorAll('a[data-path="my-bingo-card"]');
+    playLinks.forEach((playLink) => {
+      playLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        openNameEntry();
+      });
+    });
+
+    // Decline modal behavior
+    const declineBtn = document.getElementById('declineBtn');
+    const declineModal = document.getElementById('declineModal');
+    const resumeBtn = document.getElementById('resumeBtn');
+
+    if (declineBtn && declineModal) {
+      declineBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        openSpectatorMode();
+      });
+    }
+
+    if (resumeBtn && declineModal) {
+      resumeBtn.addEventListener('click', function() {
+        declineModal.classList.add('hidden');
+        openNameEntry();
+      });
+    }
+
+    // Reminder toast interaction
+    const remindBtn = document.getElementById('remindBtn');
+    const reminderToast = document.getElementById('reminderToast');
+
+    if (remindBtn && reminderToast) {
+      remindBtn.addEventListener('click', function() {
+        reminderToast.classList.remove('translate-y-24', 'opacity-0');
+        reminderToast.classList.add('translate-y-0', 'opacity-100');
+        
+        setTimeout(function() {
+          reminderToast.classList.add('translate-y-24', 'opacity-0');
+          reminderToast.classList.remove('translate-y-0', 'opacity-100');
+        }, 4000);
+      });
+    }
+  })();
+</script></main><footer class="w-full bg-surface-container-low shadow-[0_1px_8px_rgba(0,0,0,0.04)] mt-space-2xl"><div class="max-w-[75rem] mx-auto px-gutter-mobile lg:px-gutter-desktop py-space-xl"><div class="grid grid-cols-1 md:grid-cols-4 gap-space-lg mb-space-lg"><div class="md:col-span-2 flex flex-col gap-space-xs"><span class="font-headline-md text-headline-md text-on-surface">Etiqa Insurance &amp; Takaful</span><p class="font-body-md text-body-md text-on-surface-variant max-w-md">Empowering a healthier, more protected future. Engage in our structured weekly challenges, build mindful protection habits, and celebrate verified wellness milestones with guaranteed peace of mind.</p></div><div class="flex flex-col gap-space-xs"><span class="font-label-lg text-label-lg text-on-surface">Quick Access</span><div class="flex flex-col gap-space-2xs"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Campaign Rules &amp; FAQ</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="winners-and-rewards" href="#">Weekly Prize Pool</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Takaful Certificate Portal</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="staff-admin-portal" href="#">Admin Console</a></div></div><div class="flex flex-col gap-space-xs"><span class="font-label-lg text-label-lg text-on-surface">Regulatory Endorsement</span><div class="flex flex-col gap-space-xs p-space-sm bg-surface-container rounded-lg"><div class="flex items-center gap-space-2xs"><span class="material-symbols-outlined text-tertiary text-[18px]">verified_user</span><span class="font-label-md text-label-md text-on-surface">BNM &amp; PIDM Member</span></div><p class="font-body-sm text-body-sm text-on-surface-variant">Licensed by Bank Negara Malaysia (BNM). Eligible takaful certificates and insurance policies are protected by PIDM up to statutory limits.</p></div></div></div><div class="pt-space-md bg-surface-container-high/40 rounded-lg p-space-md flex flex-col sm:flex-row items-center justify-between gap-space-sm text-center sm:text-left"><p class="font-body-sm text-body-sm text-on-surface-variant">© 2025 Etiqa General Insurance Berhad &amp; Etiqa Family Takaful Berhad. All rights reserved.</p><div class="flex items-center gap-space-md"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Privacy Statement</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Terms of Campaign</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Security Notice</a></div></div></div></footer><script type="module" src="player-counter.js"></script></body></html>
+
+
+<!-- Modal Overlay Backdrop -->
+<div class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/70 backdrop-blur-md transition-all duration-300" id="winnerMessagePopup" aria-hidden="true">
+  
+  <!-- Popup Modal Container -->
+  <div class="relative w-full max-w-lg overflow-hidden rounded-3xl bg-white shadow-2xl ring-1 ring-black/5 animate-in fade-in zoom-in-95 duration-200">
+    
+    <!-- Header Banner with Golden Gradient -->
+    <div class="relative flex flex-col items-center justify-center px-6 pt-8 pb-6 text-center bg-gradient-to-b from-amber-500 via-amber-400 to-emerald-600 text-white">
+      
+      <!-- Close Button -->
+      <button 
+        type="button" 
+        class="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full bg-black/20 text-white/90 hover:bg-black/30 hover:text-white transition-colors"
+        aria-label="Close modal"
+        id="closeWinnerMessageBtn"
+      >
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <!-- Live Session Indicator -->
+      <div class="inline-flex items-center gap-1.5 rounded-full bg-black/20 px-3 py-1 text-xs font-semibold tracking-wide text-white backdrop-blur-sm mb-3">
+        <span class="h-2 w-2 rounded-full bg-emerald-300 animate-ping"></span>
+        <span>ETIQA LIVE WEEKLY DRAW</span>
+        <svg class="h-3 w-3 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <circle cx="12" cy="12" r="10" stroke-width="2"/>
+          <circle cx="12" cy="12" r="3" fill="currentColor"/>
+        </svg>
+      </div>
+
+      <!-- Trophy Icon with Winning Ball Callout -->
+      <div class="relative mb-2 flex items-center justify-center">
+        <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-md shadow-inner ring-2 ring-white/40">
+          <svg class="h-9 w-9 text-amber-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 8a4 4 0 01-8 0m8 0a4 4 0 10-8 0m8 0V4H8v4m8 0a6 6 0 01-6 6H8a6 6 0 01-6-6V4h4m12 0h2a2 2 0 012 2v2a6 6 0 01-6 6h-2M4 4H2a2 2 0 00-2 2v2a6 6 0 006 6h2m2 4v4m-4 0h8" />
+          </svg>
+        </div>
+        <span class="absolute -bottom-2 inline-flex items-center gap-1 rounded-full bg-emerald-800 px-2 py-0.5 text-[11px] font-bold text-emerald-200 ring-2 ring-white">
+          <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span> G-58
+        </span>
+      </div>
+
+      <!-- Celebration Title -->
+      <h2 class="text-2xl font-black tracking-tight text-white mt-3">
+        BINGO! YOU WON!
+      </h2>
+      <p class="text-sm font-medium text-emerald-50/90 mt-1">
+        You completed Row 3 (Horizontal Line) on Ball #19 (G-58)!
+      </p>
+    </div>
+
+    <!-- Modal Body Content -->
+    <div class="p-6 space-y-4">
+      
+      <!-- Prize Allocation Card -->
+      <div class="flex items-center justify-between p-4 rounded-2xl bg-amber-50/80 border border-amber-200/80">
+        <div class="flex items-center gap-3.5">
+          <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-amber-500 text-white shadow-md shadow-amber-500/30">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+          </div>
+          <div>
+            <span class="text-[11px] font-bold uppercase tracking-wider text-amber-800">Grand Hibah Prize Allocation</span>
+            <div class="text-xl font-extrabold text-slate-900 tracking-tight">RM 10,000 CASH</div>
+            <p class="text-xs text-slate-500">Instant Maybank DuitNow or Takaful Top-up</p>
+          </div>
+        </div>
+        <span class="rounded-lg bg-emerald-100 px-2.5 py-1 text-xs font-bold text-emerald-800 border border-emerald-200 whitespace-nowrap">
+          Round 12 Winner #3
+        </span>
+      </div>
+
+      <!-- Verification & Settlement Details Grid -->
+      <div class="grid grid-cols-2 gap-3 text-xs">
+        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70">
+          <div class="text-slate-400 font-semibold uppercase tracking-wider text-[10px]">Participant</div>
+          <div class="font-bold text-slate-800 text-sm mt-0.5">Ahmad Razak</div>
+          <div class="text-[11px] text-slate-500">ID: ETQ-MY-40291 (Premier)</div>
+        </div>
+        
+        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70">
+          <div class="text-slate-400 font-semibold uppercase tracking-wider text-[10px]">Winning Combination</div>
+          <div class="font-bold text-emerald-700 text-sm mt-0.5 flex items-center gap-1">
+            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            Row 3 (09-29-FREE-58-75)
+          </div>
+          <div class="text-[11px] text-slate-500">5-in-a-Row Horizontal Line</div>
+        </div>
+
+        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70">
+          <div class="text-slate-400 font-semibold uppercase tracking-wider text-[10px]">Digital Cryptographic Proof</div>
+          <div class="font-mono font-semibold text-slate-700 mt-0.5">SHA256: 9f82c...71ab4</div>
+          <div class="text-[11px] text-emerald-600 font-medium">Audited: BNM & PIDM Compliant</div>
+        </div>
+
+        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70">
+          <div class="text-slate-400 font-semibold uppercase tracking-wider text-[10px]">Disbursement Window</div>
+          <div class="font-bold text-slate-800 mt-0.5">Instant Transfer Available</div>
+          <div class="text-[11px] text-slate-500">Zero processing fee</div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="pt-2 space-y-2.5">
+        <!-- Primary Action: Claim -->
+        <button 
+          type="button" 
+          class="w-full flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-sm shadow-md shadow-emerald-700/25 transition-all hover:translate-y-[-1px] active:translate-y-[0px]"
+          id="claimWinnerMessageBtn"
+        >
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          Claim RM 10,000 via Maybank / DuitNow
+        </button>
+
+        <!-- Secondary Actions -->
+        <div class="grid grid-cols-2 gap-2.5">
+          <button 
+            type="button" 
+            class="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors"
+            id="returnToLiveGameBtn"
+          >
+            <svg class="h-4 w-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            Winner Certificate
+          </button>
+          
+          <button 
+            type="button" 
+            class="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors"
+          >
+            <svg class="h-4 w-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+            </svg>
+            Return to Live Game
+          </button>
+        </div>
+      </div>
+
+      <!-- Footer Compliance / Shariah Notice -->
+      <div class="pt-2 flex items-center justify-between text-[10px] text-slate-400 border-t border-slate-100">
+        <span class="flex items-center gap-1">
+          <svg class="h-3 w-3 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+          Shariah Governed & PIDM Member
+        </span>
+        <span class="font-mono">REF: #ETQ-WIN-88429-SHA256</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const popup = document.getElementById('winnerMessagePopup');
+    const closeButton = document.getElementById('closeWinnerMessageBtn');
+    const claimButton = document.getElementById('claimWinnerMessageBtn');
+    const returnButton = document.getElementById('returnToLiveGameBtn');
+
+    const winnerWasTriggered = new URLSearchParams(window.location.search).get('winner') === '1';
+    if (popup && winnerWasTriggered) {
+      popup.classList.remove('hidden');
+      popup.classList.add('flex');
+      popup.setAttribute('aria-hidden', 'false');
+      popup.style.display = 'flex';
+      popup.style.pointerEvents = 'auto';
+    }
+
+    const closePopup = () => {
+      if (popup) {
+        popup.classList.add('hidden');
+        popup.setAttribute('aria-hidden', 'true');
+        popup.style.display = 'none';
+        popup.style.pointerEvents = 'none';
+      }
+    };
+
+    closeButton?.addEventListener('click', () => {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.assign('Game/game.html');
+      }
+    });
+    popup?.addEventListener('click', (event) => {
+      if (event.target === popup) closePopup();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closePopup();
+    });
+
+    claimButton?.addEventListener('click', () => {
+      claimButton.textContent = 'Reward Claimed';
+      claimButton.disabled = true;
+      claimButton.classList.add('opacity-70', 'cursor-not-allowed');
+      setTimeout(closePopup, 700);
+    });
+
+    returnButton?.addEventListener('click', () => {
+      window.location.href = new URL('Game/game.html', window.location.href).toString();
+    });
+  })();
+</script>
+
+

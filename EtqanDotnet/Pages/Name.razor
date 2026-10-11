@@ -1,0 +1,149 @@
+@page "/name.html"
+@page "/name"
+@implements IAsyncDisposable
+@using Microsoft.JSInterop
+@inject IJSRuntime JS
+@inject NavigationManager Navigation
+
+<PageTitle>ETIQAN Challenge</PageTitle>
+
+<div class="name-page">
+    <header class="name-header">
+        <div class="name-brand">
+            <img src="etiqa-logo.svg" alt="Etiqa logo" />
+            <div>
+                <strong>Etiqa</strong>
+                <span>WEEKLY ETIQAN CHALLENGE</span>
+            </div>
+        </div>
+        <nav class="name-nav" aria-label="Main navigation">
+            <a href="#">Campaign Overview</a>
+            <a href="#">Join &amp; Registration</a>
+            <a class="active" href="/name.html">My ETIQAN Card</a>
+            <a href="#">Live Weekly Game</a>
+            <a href="#">Winners &amp; Rewards</a>
+        </nav>
+        <div class="name-member"><span>●</span> Active Participant</div>
+    </header>
+
+    <main class="name-main">
+        <div class="name-ambient"></div>
+        <div class="name-trust-row">
+            <span>✓ Verified Etiqa Takaful &amp; Protection Challenge</span>
+            <small>Session ID: <b>ETQ-2025-W12</b></small>
+        </div>
+
+        <section class="name-invite-card">
+            <div class="name-live-banner">
+                <div><span class="pulse-dot"></span><b>LIVE ROUND IN PROGRESS</b><i>•</i><span>Round 12 of 12</span></div>
+                <span class="active-count">♟ <b>Active policyholders</b></span>
+            </div>
+
+            <div class="name-content">
+                <span class="name-overline">ETIQA HIBAH &amp; WELLNESS SEASON</span>
+                <h1>Do You Want to Play ETIQAN?</h1>
+                <p>Join the active policyholders in this week's live game for a guaranteed share of the <strong>RM 250,000 Hibah Prize Pool</strong>. Answer questions, complete your ETIQAN line, and claim your rewards.</p>
+
+                <div class="name-balls" aria-hidden="true">
+                    <div><b>E-12</b><span>General</span></div>
+                    <div><b>T-24</b><span>Etiqa</span></div>
+                    <div class="center"><b>FREE</b><span>Community</span></div>
+                    <div><b>Q-55</b><span>Quiz</span></div>
+                    <div><b>N-72</b><span>Numbers</span></div>
+                </div>
+
+                <div class="name-actions">
+                    <button class="play-button" type="button" @onclick="OpenPlayerModal">✓ Yes, Play Now!</button>
+                    <button class="guest-button" type="button" @onclick="PlayAsGuestAsync">Play as Guest</button>
+                </div>
+                <p class="name-footnote">🔒 Secure player session allocated to your name</p>
+            </div>
+        </section>
+    </main>
+
+    @if (IsModalOpen)
+    {
+        <div class="name-modal-backdrop" role="presentation" @onclick="CloseModal">
+            <section class="name-modal" role="dialog" aria-modal="true" aria-labelledby="player-modal-title" @onclick:stopPropagation>
+                <button class="modal-close" type="button" aria-label="Close dialog" @onclick="CloseModal">×</button>
+                <span class="name-overline">WEEKLY CHALLENGE</span>
+                <h2 id="player-modal-title">Who is Playing Today?</h2>
+                <p>Set your player display name to authenticate your ETIQAN card and join the live game.</p>
+                <form @onsubmit="SubmitPlayerAsync" @onsubmit:preventDefault>
+                    <label for="playerName">Player / Policyholder Name</label>
+                    <input id="playerName" @bind="PlayerName" placeholder="e.g. Ahmad Razak or Sarah Lim" required />
+                    @if (!string.IsNullOrWhiteSpace(ErrorMessage))
+                    {
+                        <div class="name-error">@ErrorMessage</div>
+                    }
+                    <button class="modal-continue" type="submit" disabled="@IsSubmitting">@(IsSubmitting ? "Opening…" : "Continue to Game →")</button>
+                    <button class="modal-guest" type="button" @onclick="PlayAsGuestAsync">Play as Guest</button>
+                </form>
+            </section>
+        </div>
+    }
+</div>
+
+@code {
+    private IJSObjectReference? _module;
+    private string PlayerName { get; set; } = "Ahmad Razak";
+    private bool IsModalOpen;
+    private bool IsSubmitting;
+    private string? ErrorMessage;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _module = await JS.InvokeAsync<IJSObjectReference>("import", "./firebase-interop.js");
+        }
+    }
+
+    private void OpenPlayerModal()
+    {
+        ErrorMessage = null;
+        IsModalOpen = true;
+    }
+
+    private void CloseModal() => IsModalOpen = false;
+
+    private Task SubmitPlayerAsync() => OpenGameAsync(PlayerName);
+
+    private Task PlayAsGuestAsync() => OpenGameAsync("Guest");
+
+    private async Task OpenGameAsync(string name)
+    {
+        var cleanName = name.Trim();
+        if (string.IsNullOrWhiteSpace(cleanName) || IsSubmitting)
+        {
+            ErrorMessage = "Please enter a player name.";
+            IsModalOpen = true;
+            return;
+        }
+
+        IsSubmitting = true;
+        ErrorMessage = null;
+        try
+        {
+            var playerId = _module is null
+                ? Guid.NewGuid().ToString("N")
+                : await _module.InvokeAsync<string>("createPlayerRecord", cleanName);
+
+            var destination = $"/Game/game.html?playerName={Uri.EscapeDataString(cleanName)}&playerId={Uri.EscapeDataString(playerId)}";
+            Navigation.NavigateTo(destination);
+        }
+        catch (Exception exception)
+        {
+            ErrorMessage = $"Could not create player session: {exception.Message}";
+            IsSubmitting = false;
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_module is not null)
+        {
+            await _module.DisposeAsync();
+        }
+    }
+}

@@ -1,0 +1,4 @@
+C:\Users\user\New folder\EtqanDotnet\bin\Release\net10.0\publish\wwwroot\index.html
+C:\Users\user\New folder\EtqanDotnet\bin\Release\net10.0\publish\EtqanDotnet.runtimeconfig.json
+C:\Users\user\New folder\EtqanDotnet\bin\Release\net10.0\publish\dotnet.js
+C:\Users\user\New folder\EtqanDotnet\bin\Release\net10.0\publish\web.config

@@ -1,0 +1,474 @@
+<!DOCTYPE html><script type="module" src="../player-counter.js"></script>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-error": "#ffffff", "on-tertiary-fixed-variant": "#005137", "inverse-on-surface": "#eaf1ff", "tertiary-container": "#50c594", "surface-container-low": "#eff4ff", "tertiary": "#006c4a", "secondary-fixed": "#dae2fd", "outline": "#867461", "primary-fixed": "#ffddb8", "on-primary-container": "#613b00", "on-surface-variant": "#534434", "primary": "#855300", "background": "#f8f9ff", "outline-variant": "#d8c3ad", "secondary-fixed-dim": "#bec6e0", "surface-container-high": "#dce9ff", "on-secondary-fixed": "#131b2e", "on-error-container": "#93000a", "surface-container-highest": "#d3e4fe", "on-primary": "#ffffff", "secondary": "#565e74", "error-container": "#ffdad6", "error": "#ba1a1a", "surface-variant": "#d3e4fe", "inverse-primary": "#ffb95f", "on-secondary": "#ffffff", "tertiary-fixed": "#85f8c4", "on-primary-fixed-variant": "#653e00", "primary-fixed-dim": "#ffb95f", "on-tertiary-container": "#004e35", "surface-bright": "#f8f9ff", "on-tertiary": "#ffffff", "tertiary-fixed-dim": "#68dba9", "on-secondary-container": "#5c647a", "surface-dim": "#cbdbf5", "surface-container-lowest": "#ffffff", "surface": "#f8f9ff", "on-surface": "#0b1c30", "on-tertiary-fixed": "#002114", "on-secondary-fixed-variant": "#3f465c", "primary-container": "#f59e0b", "on-background": "#0b1c30", "surface-tint": "#855300", "secondary-container": "#dae2fd", "surface-container": "#e5eeff", "inverse-surface": "#213145", "on-primary-fixed": "#2a1700" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-2xs": "0.25rem", "grid-max-width": "75rem", "space-xs": "0.5rem", "space-xl": "2rem", "space-lg": "1.5rem", "gutter-desktop": "1.5rem", "space-sm": "0.75rem", "gutter-mobile": "1rem", "space-md": "1rem", "space-3xl": "4rem", "space-2xl": "3rem" }, fontFamily: { "display-hero": ["Plus Jakarta Sans"], "label-caps": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "display-hero-mobile": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "headline-xl-mobile": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"] }, fontSize: { "display-hero": ["44px", { lineHeight: "52px", letterSpacing: "-0.02em", fontWeight: "800" }], "label-caps": ["11px", { lineHeight: "14px", letterSpacing: "0.06em", fontWeight: "700" }], "label-lg": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "600" }], "display-hero-mobile": ["32px", { lineHeight: "40px", letterSpacing: "-0.015em", fontWeight: "800" }], "headline-xl": ["30px", { lineHeight: "38px", letterSpacing: "-0.015em", fontWeight: "700" }], "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }], "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "600" }], "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }], "headline-lg": ["22px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "700" }], "headline-xl-mobile": ["24px", { lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "700" }], "headline-md": ["18px", { lineHeight: "24px", letterSpacing: "-0.005em", fontWeight: "600" }], "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }] } } } }</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 bg-surface-container-lowest/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 max-w-grid-max-width mx-auto px-gutter-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm"><img alt="Etiqa logo" class="h-8 w-auto object-contain" src="../etiqa-logo.svg"/><div class="flex flex-col border-l border-outline-variant pl-space-sm"><span class="font-headline-md text-headline-md text-on-surface leading-tight">Etiqa Bingo Challenge</span><span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Etiqa Insurance &amp; Takaful</span></div></div><nav class="hidden xl:flex items-center gap-space-2xs" data-active-classes="bg-primary-container text-on-primary-container font-label-lg font-bold rounded-lg shadow-sm"><a class="px-space-sm py-space-xs font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface rounded-lg transition-all" data-path="campaign-overview" href="#">Campaign Overview</a><a aria-current="page" class="px-space-sm py-space-xs transition-all bg-primary-container text-on-primary-container font-label-lg font-bold rounded-lg shadow-sm" data-path="my-bingo-card" href="game.html">My Bingo Card</a><a class="px-space-sm py-space-xs font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface rounded-lg transition-all" data-path="live-weekly-draw" href="#">Live Weekly Draw</a></nav><div class="flex items-center gap-space-sm"><div class="hidden sm:flex items-center gap-space-2xs px-space-sm py-space-xs rounded-full bg-secondary-container text-on-secondary-container"><span class="material-symbols-outlined text-base">verified_user</span><span class="font-label-caps text-label-caps uppercase">Active Participant</span></div><div class="hidden md:flex items-center gap-space-2xs px-space-sm py-space-xs rounded-full bg-primary-fixed text-on-primary-fixed"><span class="material-symbols-outlined text-base text-primary">timer</span><span class="font-label-md text-label-md">Next Draw: Friday 4:00 PM</span></div><div class="flex items-center gap-space-2xs pl-space-xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCC_70yOvLnszbhzq4MBsA5qlf7wRIuOZNwBnxZ7b4ib_0_wFlSdWzqLJoo_krPD-4UoglOAJpAd3CzfF5KfkBo9Zi_1t7oTJRi64lH4FM4KMoYP7eiKbbB6OUeoXDrxcnXcxYkne_9LHkavazMeICmGgppJ28TrCFfNnvUbVzUbyJTk9nQS40cGoUNI6FDAWlQ1yWNAzbdYQ9SXBySgd_KAub_oxaKavaOdoO9OKltXs_OaI9-NQ"/><div class="hidden lg:flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface">Ahmad Razak</span><span class="font-body-sm text-body-sm text-on-surface-variant">Premier Member</span></div></div></div></div></header><main class="w-full pt-20 bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- Active Navigation Sync Trigger (Ensures "Campaign Overview" Tab has primary active styling) -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const links = document.querySelectorAll('header nav a');
+      links.forEach(l => {
+        if (l.getAttribute('data-path') === 'campaign-overview') {
+          l.className = 'px-space-sm py-space-xs font-label-lg text-label-lg bg-primary-container text-on-primary-container font-bold rounded-lg shadow-sm';
+        }
+      });
+    });
+  </script>
+<!-- Hero & Strategic Campaign Introduction -->
+<section class="relative w-full overflow-hidden bg-gradient-to-b from-surface-container-high/60 via-surface to-background pb-space-2xl pt-space-xl">
+<div class="max-w-grid-max-width mx-auto px-gutter-desktop">
+<div class="flex flex-col lg:flex-row items-center justify-between gap-space-2xl">
+<!-- Left Editorial Content Column -->
+<div class="flex flex-col items-start max-w-2xl">
+<!-- Official Campaign Super-Badge -->
+<div class="inline-flex items-center gap-space-2xs px-space-sm py-1.5 rounded-full bg-surface-container-lowest shadow-sm mb-space-md">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container animate-pulse"></span>
+<span class="font-label-caps text-label-caps text-on-surface uppercase tracking-wider font-extrabold">OFFICIAL CORPORATE CAMPAIGN • Q4 NATIONWIDE EVENT</span>
+</div>
+<h1 class="font-display-hero text-display-hero text-on-surface tracking-tight mb-space-sm">
+            Etiqa Annual Wellness &amp; Protection Bingo 2024
+          </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed mb-space-xl">
+            A nationwide policyholder celebration event hosted by Etiqa Insurance &amp; Takaful. Complete wellness milestones, claim your verified 5x5 digital bingo card, and celebrate with over 20,000 members for weekly grand hibah prizes.
+          </p>
+<!-- Primary & Ghost Interactive CTA Triggers -->
+<div class="flex flex-wrap items-center gap-space-md mb-space-xl w-full sm:w-auto">
+<a class="inline-flex items-center justify-center gap-space-xs px-space-lg py-3 rounded-lg bg-primary-container text-on-primary-container font-label-lg text-label-lg hover:brightness-105 transition-all shadow-md active:scale-95" data-path="join-and-registration" href="#">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span>Join This Week's Draw</span>
+</a>
+<button class="inline-flex items-center justify-center gap-space-xs px-space-md py-3 rounded-lg bg-surface-container-lowest text-on-surface font-label-lg text-label-lg hover:bg-surface-container-high transition-all shadow-sm" onclick="alert('Downloading Official Event Prospectus (PDF v2.4)...')" type="button">
+<span class="material-symbols-outlined text-xl text-primary">download</span>
+<span>Download Official Event Guide (PDF)</span>
+</button>
+</div>
+<!-- Trust Assurances Pill Ribbon -->
+<div class="flex flex-wrap items-center gap-space-md text-on-surface-variant font-label-md text-label-md">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-tertiary text-lg" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span>100% Free Entry</span>
+</div>
+<span class="text-outline-variant">•</span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-tertiary text-lg" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span>Shariah-Compliant Hibah</span>
+</div>
+<span class="text-outline-variant">•</span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-tertiary text-lg" style="font-variation-settings: 'FILL' 1;">gavel</span>
+<span>Zero Purchase Mandatory</span>
+</div>
+</div>
+</div>
+<!-- Right Visual Showcase / Live Telemetry Card -->
+<div class="w-full lg:w-[460px] flex-shrink-0">
+<div class="relative rounded-2xl bg-surface-container-lowest p-space-lg shadow-xl overflow-hidden">
+<!-- Decorative Background Accent -->
+<div class="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-primary-container/15 blur-2xl pointer-events-none"></div>
+<div class="flex items-center justify-between pb-space-md">
+<div class="flex items-center gap-space-xs">
+<img alt="Etiqa logo" class="h-8 w-auto object-contain" src="../etiqa-logo.svg"/>
+<span class="font-headline-md text-headline-md text-on-surface">Live Event Telemetry</span>
+</div>
+<span class="px-space-xs py-1 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-caps text-label-caps uppercase">System Live</span>
+</div>
+<!-- Interactive Countdown / Live Draw Radar -->
+<div class="p-space-md rounded-xl bg-surface-container-low mb-space-md">
+<div class="flex justify-between items-center mb-space-2xs">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Next Automated Live Ball Drop</span>
+<span class="font-label-md text-label-md text-tertiary font-bold">Week 12 of 12</span>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-headline-xl text-headline-xl text-on-surface font-extrabold" id="campaign-timer">48h : 14m : 09s</span>
+<span class="font-label-md text-label-md text-primary font-bold">Friday 4:00 PM</span>
+</div>
+<!-- Live Progress Track -->
+<div class="w-full bg-surface-container-high h-2 rounded-full mt-space-sm overflow-hidden">
+<div class="bg-gradient-to-r from-primary-container to-tertiary h-full rounded-full" style="width: 82%;"></div>
+</div>
+<div class="flex justify-between text-body-sm text-on-surface-variant mt-1">
+<span>Task Sync: 82%</span>
+<span>Seed Audit Locked</span>
+</div>
+</div>
+<!-- Live Verification Mini Matrix Preview -->
+<div class="rounded-xl bg-surface p-space-sm mb-space-md">
+<div class="flex items-center justify-between pb-space-xs text-on-surface-variant font-label-caps text-label-caps uppercase">
+<span>Synchronized Matrix (Sample Cell)</span>
+<span class="text-tertiary font-bold">SHA-256 Validated</span>
+</div>
+<div class="grid grid-cols-5 gap-1.5 text-center">
+<div class="p-2 rounded bg-tertiary-container/30 text-on-tertiary-container font-label-md text-label-md font-bold">B04</div>
+<div class="p-2 rounded bg-surface-container-lowest text-on-surface font-label-md text-label-md">I19</div>
+<div class="p-2 rounded bg-primary-container text-on-primary-container font-label-md text-label-md font-bold">FREE</div>
+<div class="p-2 rounded bg-tertiary-container/30 text-on-tertiary-container font-label-md text-label-md font-bold">G47</div>
+<div class="p-2 rounded bg-surface-container-lowest text-on-surface font-label-md text-label-md">O72</div>
+</div>
+</div>
+<!-- User Status Card Ribbon -->
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-space-xs">
+<img alt="Ahmad Razak" class="w-9 h-9 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1V4WyMhL4YfAqEcr4k1D8622WrYTpEAryPyw_bwxo_KI00NcmsIFnvL4RK_FdYOaeMuxCE90ZhekPtQMVQXL4DgqfaI8s8FKxPcHILBhZd55nUpuKNgrt1Md_jxPxKV8ZDw3P2xqO7NtdvaQtbWrWcaYy5Od18FTkI2JrmUnz57qxSJXUY5jwaX5TyyZ1wDery9MxTXqRsbBUre_vIt-W30CA_d-UAGLD3DuNw5lfRJ3-xYTg7DzAHm"/>
+<div class="flex flex-col text-left">
+<span class="font-label-md text-label-md text-on-surface">Participant: Ahmad Razak</span>
+<span class="font-body-sm text-body-sm text-tertiary font-medium">Eligible Card #ETQ-9941</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-tertiary text-2xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Event Key Metrics Row (Corporate Tonal Surface) -->
+<section class="w-full bg-surface-container-lowest py-space-lg shadow-sm">
+<div class="max-w-grid-max-width mx-auto px-gutter-desktop">
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-space-md">
+<!-- Metric 1 -->
+<div class="flex flex-col p-space-sm rounded-xl bg-surface-container-low/50">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Event Duration</span>
+<span class="font-headline-md text-headline-md text-on-surface font-bold">12 Weeks</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Oct 1 – Dec 24, 2024</span>
+</div>
+<!-- Metric 2 -->
+<div class="flex flex-col p-space-sm rounded-xl bg-surface-container-low/50">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Current Milestone</span>
+<span class="font-headline-md text-headline-md text-primary font-bold">Week 12 Sprint</span>
+<span class="font-body-sm text-body-sm text-tertiary font-semibold">Grand Finale Draw</span>
+</div>
+<!-- Metric 3 -->
+<div class="flex flex-col p-space-sm rounded-xl bg-surface-container-low/50">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Total Prize Purse</span>
+<span class="font-headline-md text-headline-md text-on-surface font-bold">RM 250,000</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Guaranteed Hibah Fund</span>
+</div>
+<!-- Metric 4 -->
+<div class="flex flex-col p-space-sm rounded-xl bg-surface-container-low/50">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Verified Enrolled</span>
+<span class="font-headline-md text-headline-md text-on-surface font-bold" data-active-player-count data-active-player-count-format="number">Loading...</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Active Policyholders</span>
+</div>
+<!-- Metric 5 -->
+<div class="flex flex-col p-space-sm rounded-xl bg-surface-container-low/50 col-span-2 sm:col-span-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Regulatory Sanction</span>
+<span class="font-headline-md text-headline-md text-tertiary font-bold">BNM &amp; PIDM</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Protected up to RM500k</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Prize Showcase & Event Rewards Section -->
+<section class="w-full py-space-2xl bg-background">
+<div class="max-w-grid-max-width mx-auto px-gutter-desktop">
+<div class="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-space-xl gap-space-md">
+<div>
+<span class="font-label-caps text-label-caps text-primary uppercase font-bold tracking-wider">REWARD TIERS &amp; HIBAH DISTRIBUTION</span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface mt-1">Festival Reward Tiers</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Transparent reward structure verified by the Etiqa Shariah &amp; Audit Advisory Board.</p>
+</div>
+<div class="flex items-center gap-space-xs px-space-sm py-1.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-md text-label-md font-semibold">
+<span class="material-symbols-outlined text-lg text-primary">redeem</span>
+<span>1,250 Total Winners Announced to Date</span>
+</div>
+</div>
+<!-- 3 Tier Cards Bento Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-space-lg">
+<!-- Tier 1: Grand Finale Prize (Featured Card) -->
+<div class="relative rounded-2xl bg-surface-container-lowest p-space-xl shadow-lg flex flex-col justify-between overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-container/20 rounded-bl-full pointer-events-none"></div>
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="px-space-sm py-1 rounded bg-primary-container text-on-primary-container font-label-caps text-label-caps font-bold uppercase">Tier 1 • Grand Hibah</span>
+<span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface font-extrabold mb-space-xs">
+              4D3N Luxury Wellness Retreat in Langkawi
+            </h3>
+<p class="font-body-md text-body-md text-primary font-bold mb-space-md">
+              + RM 10,000 Investment-Linked Policy Top-up
+            </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-lg">
+              Awarded to the participant completing the Full House (all 25 tiles daubed) in Week 12. Includes private villa, certified wellness program, and policy capital allocation.
+            </p>
+</div>
+<div class="pt-space-md bg-surface-container-low/60 rounded-xl p-space-sm">
+<div class="flex justify-between items-center text-on-surface-variant font-label-caps text-label-caps uppercase">
+<span>Qualification Requirement</span>
+<span class="font-bold text-on-surface">Full Board Completion</span>
+</div>
+</div>
+</div>
+<!-- Tier 2: Weekly Runner-Up Winners -->
+<div class="rounded-2xl bg-surface-container-lowest p-space-xl shadow-md flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="px-space-sm py-1 rounded bg-secondary-container text-on-secondary-container font-label-caps text-label-caps font-bold uppercase">Tier 2 • Weekly Quad</span>
+<span class="material-symbols-outlined text-secondary text-2xl" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface font-extrabold mb-space-xs">
+              RM 3,750 Medical &amp; Motor Premium Rebate
+            </h3>
+<p class="font-body-md text-body-md text-secondary font-bold mb-space-md">
+              + RM 1,000 Touch 'n Go eWallet Credits
+            </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-lg">
+              Awarded each week to 4 participants completing any 3 completed bingo lines (horizontal, vertical, or diagonal). Credited within 48 hours.
+            </p>
+</div>
+<div class="pt-space-md bg-surface-container-low/60 rounded-xl p-space-sm">
+<div class="flex justify-between items-center text-on-surface-variant font-label-caps text-label-caps uppercase">
+<span>Qualification Requirement</span>
+<span class="font-bold text-on-surface">Any 3 Lines Cleared</span>
+</div>
+</div>
+</div>
+<!-- Tier 3: Instant Milestone Health Vouchers -->
+<div class="rounded-2xl bg-surface-container-lowest p-space-xl shadow-md flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="px-space-sm py-1 rounded bg-tertiary-container text-on-tertiary-container font-label-caps text-label-caps font-bold uppercase">Tier 3 • Guaranteed Line</span>
+<span class="material-symbols-outlined text-tertiary text-2xl" style="font-variation-settings: 'FILL' 1;">health_and_safety</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface font-extrabold mb-space-xs">
+              Instant RM50 Etiqa Smile Health Vouchers
+            </h3>
+<p class="font-body-md text-body-md text-tertiary font-bold mb-space-md">
+              Guaranteed for Every Single Line Completed
+            </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-lg">
+              Complete any horizontal, vertical, or diagonal line to instantly unlock RM50 optical, dental, or wellness screening vouchers at over 600 Etiqa partner clinics.
+            </p>
+</div>
+<div class="pt-space-md bg-surface-container-low/60 rounded-xl p-space-sm">
+<div class="flex justify-between items-center text-on-surface-variant font-label-caps text-label-caps uppercase">
+<span>Qualification Requirement</span>
+<span class="font-bold text-on-surface">Any 1 Line Cleared</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Weekly Cadence & Event Schedule -->
+<section class="w-full py-space-2xl bg-surface-container-low/40">
+<div class="max-w-grid-max-width mx-auto px-gutter-desktop">
+<div class="max-w-2xl mb-space-xl">
+<span class="font-label-caps text-label-caps text-primary uppercase font-bold tracking-wider">SCHEDULE OF OPERATIONS</span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface mt-1">Weekly Draw Cadence</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Every weekly cycle is synchronized with automated task verification and live public RNG draws.</p>
+</div>
+<!-- Cadence Steps Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Monday -->
+<div class="p-space-lg rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-caps text-label-caps text-primary uppercase font-bold">Phase 01</span>
+<span class="font-label-md text-label-md text-on-surface-variant font-semibold">Monday 9:00 AM</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold mb-space-xs">
+              Card Issue &amp; Task Sync
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              New randomized 5x5 matrices are published to policyholders. Google Fit, Apple Health, and Etiqa Smile app activities begin auto-syncing.
+            </p>
+</div>
+<div class="mt-space-md flex items-center gap-1.5 text-on-surface font-label-md text-label-md">
+<span class="material-symbols-outlined text-primary text-base">sync</span>
+<span>Automated Ingestion</span>
+</div>
+</div>
+<!-- Wednesday -->
+<div class="p-space-lg rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-caps text-label-caps text-primary uppercase font-bold">Phase 02</span>
+<span class="font-label-md text-label-md text-on-surface-variant font-semibold">Wednesday 12:00 PM</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold mb-space-xs">
+              Mid-Week Daub &amp; Audit Lock
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Mid-week milestone bonus daubs are credited. Challenge hashes and participant seed IDs are irreversibly committed to public verification logs.
+            </p>
+</div>
+<div class="mt-space-md flex items-center gap-1.5 text-on-surface font-label-md text-label-md">
+<span class="material-symbols-outlined text-primary text-base">lock</span>
+<span>Cryptographic Lock</span>
+</div>
+</div>
+<!-- Friday Live Draw (Highlighted) -->
+<div class="p-space-lg rounded-2xl bg-primary-fixed text-on-primary-fixed shadow-md flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-primary-container/20 rounded-full pointer-events-none"></div>
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="px-space-2xs py-0.5 rounded bg-primary-container text-on-primary-container font-label-caps text-label-caps font-bold uppercase">Active Stage</span>
+<span class="font-label-md text-label-md text-on-primary-fixed font-bold">Friday 4:00 PM</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-primary-fixed font-extrabold mb-space-xs">
+              Official Live RNG Draw
+            </h3>
+<p class="font-body-sm text-body-sm text-on-primary-fixed-variant leading-relaxed">
+              Synchronized 75-ball RNG lottery call broadcasted live inside the participant portal with real-time automatic matrix marking.
+            </p>
+</div>
+<div class="mt-space-md flex items-center gap-1.5 text-on-primary-fixed font-label-md text-label-md font-bold">
+<span class="material-symbols-outlined text-primary text-base" style="font-variation-settings: 'FILL' 1;">sensors</span>
+<span>Live Stream Portal</span>
+</div>
+</div>
+<!-- Friday Payouts -->
+<div class="p-space-lg rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-caps text-label-caps text-tertiary uppercase font-bold">Phase 04</span>
+<span class="font-label-md text-label-md text-on-surface-variant font-semibold">Friday 4:45 PM</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold mb-space-xs">
+              Audit &amp; Instant Payout
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Winning boards undergo instant automated Shariah and compliance check. TNG eWallet credits and Etiqa premium vouchers are dispatched.
+            </p>
+</div>
+<div class="mt-space-md flex items-center gap-1.5 text-tertiary font-label-md text-label-md font-semibold">
+<span class="material-symbols-outlined text-tertiary text-base">payments</span>
+<span>Instant Disbursement</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- How the Event Works: Corporate Governance & Fair Play -->
+<section class="w-full py-space-2xl bg-background">
+<div class="max-w-grid-max-width mx-auto px-gutter-desktop">
+<div class="text-center max-w-3xl mx-auto mb-space-xl">
+<span class="font-label-caps text-label-caps text-primary uppercase font-bold tracking-wider">TRANSPARENT GOVERNANCE</span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface mt-1">How the Bingo Challenge Works</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Etiqa guarantees institutional fairness through algorithmic randomization and clear participation guidelines.</p>
+</div>
+<!-- 4 Pillars Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-lg">
+<!-- Step 1 -->
+<div class="flex flex-col items-start p-space-lg rounded-2xl bg-surface-container-lowest shadow-sm">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-primary mb-space-md">
+<span class="material-symbols-outlined text-2xl font-bold">how_to_reg</span>
+</div>
+<span class="font-label-caps text-label-caps text-primary uppercase font-bold mb-1">Step 01</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold mb-space-2xs">Universal Eligibility</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            All active Etiqa policyholders are enrolled seamlessly. Malaysian residents without an active policy may register free via MyKad verification.
+          </p>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-start p-space-lg rounded-2xl bg-surface-container-lowest shadow-sm">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-primary mb-space-md">
+<span class="material-symbols-outlined text-2xl font-bold">grid_view</span>
+</div>
+<span class="font-label-caps text-label-caps text-primary uppercase font-bold mb-1">Step 02</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold mb-space-2xs">Cryptographic Matrix</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Every card is mathematically unique, generated through SHA-256 seed hashing to prevent duplicate boards or pre-calculated permutations.
+          </p>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-start p-space-lg rounded-2xl bg-surface-container-lowest shadow-sm">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-primary mb-space-md">
+<span class="material-symbols-outlined text-2xl font-bold">podcasts</span>
+</div>
+<span class="font-label-caps text-label-caps text-primary uppercase font-bold mb-1">Step 03</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold mb-space-2xs">Friday Public Draw</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Numbered balls (1–75) are called every 6 seconds in the interactive session. Completed wellness tasks automatically daub designated tiles.
+          </p>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col items-start p-space-lg rounded-2xl bg-surface-container-lowest shadow-sm">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-primary mb-space-md">
+<span class="material-symbols-outlined text-2xl font-bold">verified</span>
+</div>
+<span class="font-label-caps text-label-caps text-primary uppercase font-bold mb-1">Step 04</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold mb-space-2xs">Audited Disbursement</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Winning claims are checked against PIDM and BNM audit compliance. Direct credits are released immediately to policyholder e-wallets.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Corporate Sponsor & Leadership Message Section -->
+<section class="w-full py-space-2xl bg-surface-container-lowest shadow-sm">
+<div class="max-w-grid-max-width mx-auto px-gutter-desktop">
+<div class="rounded-2xl bg-surface-container p-space-xl lg:p-space-2xl flex flex-col lg:flex-row items-center justify-between gap-space-xl">
+<!-- Left: Executive Note -->
+<div class="max-w-2xl flex flex-col items-start">
+<div class="flex items-center gap-space-xs mb-space-md">
+<span class="material-symbols-outlined text-primary text-3xl">format_quote</span>
+<span class="font-label-caps text-label-caps text-on-surface font-bold uppercase tracking-wider">Etiqa Organizing Committee &amp; Shariah Board</span>
+</div>
+<p class="font-headline-md text-headline-md text-on-surface italic leading-relaxed mb-space-lg">
+            "The Weekly Bingo Challenge translates traditional protection into daily, joyful wellness habits. By combining healthy activities with guaranteed corporate hibah rewards, we celebrate the active trust our 1.8 million Malaysian policyholders place in Etiqa every single day."
+          </p>
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-headline-md">
+              EK
+            </div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">Dato' Shahril Azman</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Chief Executive Officer, Etiqa Insurance &amp; Takaful</span>
+</div>
+</div>
+</div>
+<!-- Right: Institutional Seals & Compliance Badges -->
+<div class="w-full lg:w-[360px] flex flex-col gap-space-md p-space-lg rounded-xl bg-surface-container-lowest shadow-sm">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase font-bold">Institutional Compliance</span>
+<div class="flex items-center gap-space-sm p-space-xs rounded-lg bg-surface">
+<span class="material-symbols-outlined text-tertiary text-2xl">account_balance</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Bank Negara Malaysia</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Regulated under FSA 2013 &amp; IFSA 2013</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm p-space-xs rounded-lg bg-surface">
+<span class="material-symbols-outlined text-tertiary text-2xl">security</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Perbadanan Insurans Deposit Malaysia</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Protected by PIDM up to RM500,000</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm p-space-xs rounded-lg bg-surface">
+<span class="material-symbols-outlined text-primary text-2xl">support_agent</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Customer Careline</span>
+<span class="font-body-sm text-body-sm text-primary font-bold">1-300-13-8888 (Toll Free)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final Call to Action Banner -->
+<section class="w-full py-space-2xl bg-gradient-to-r from-surface-container-highest via-surface-container to-surface-container-high">
+<div class="max-w-grid-max-width mx-auto px-gutter-desktop">
+<div class="rounded-3xl bg-surface-container-lowest p-space-xl lg:p-space-2xl shadow-xl flex flex-col md:flex-row items-center justify-between gap-space-xl">
+<div class="max-w-xl">
+<span class="px-space-xs py-1 rounded bg-primary-fixed text-on-primary-fixed font-label-caps text-label-caps font-bold uppercase">Ready for Week 12?</span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface font-extrabold mt-space-2xs mb-space-xs">
+            Generate Your Card for Friday's Live Session
+          </h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Over RM 50,000 in grand finale prizes will be awarded this Friday at 4:00 PM. Verify your registered mobile or policy number to claim your authenticated board now.
+          </p>
+</div>
+<div class="w-full md:w-auto flex flex-col sm:flex-row items-center gap-space-sm">
+<input class="w-full sm:w-64 px-space-md py-3 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md outline-none focus:bg-surface-container-lowest transition-all" placeholder="Enter Policy / MyKad No." type="text"/>
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-space-xs px-space-lg py-3 rounded-lg bg-primary-container text-on-primary-container font-label-lg text-label-lg font-bold hover:brightness-105 transition-all shadow-md whitespace-nowrap" data-path="join-and-registration" href="#">
+<span>Verify &amp; Enter</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+</div></main><footer class="w-full bg-surface-container-lowest shadow-[0_-1px_8px_rgba(0,0,0,0.03)] mt-space-2xl"><div class="max-w-grid-max-width mx-auto px-gutter-desktop py-space-xl"><div class="grid grid-cols-1 md:grid-cols-4 gap-space-xl pb-space-lg"><div class="flex flex-col gap-space-xs"><div class="flex items-center gap-space-xs"><span class="font-headline-md text-headline-md text-on-surface">Etiqa</span><span class="font-label-caps text-label-caps px-space-2xs py-0.5 rounded bg-primary-container text-on-primary-container font-bold">Official</span></div><p class="font-body-sm text-body-sm text-on-surface-variant">Etiqa Insurance Berhad &amp; Etiqa Takaful Berhad. Empowering Malaysians through prudent protection, wellness challenges, and transparent community rewards.</p></div><div class="flex flex-col gap-space-xs"><span class="font-label-lg text-label-lg text-on-surface font-bold">Customer Care &amp; Support</span><div class="flex items-center gap-space-2xs text-on-surface-variant"><span class="material-symbols-outlined text-base text-primary">call</span><span class="font-body-md text-body-md font-semibold text-on-surface">1-300-13-8888</span></div><p class="font-body-sm text-body-sm text-on-surface-variant">Monday - Friday: 8:30 AM - 5:30 PM</p><p class="font-body-sm text-body-sm text-on-surface-variant">Email: info@etiqa.com.my</p></div><div class="flex flex-col gap-space-xs"><span class="font-label-lg text-label-lg text-on-surface font-bold">Regulatory Assurance</span><div class="flex items-start gap-space-2xs"><span class="material-symbols-outlined text-tertiary text-base mt-0.5">shield</span><p class="font-body-sm text-body-sm text-on-surface-variant">Licensed by Bank Negara Malaysia (BNM) under the Financial Services Act 2013 &amp; Islamic Financial Services Act 2013.</p></div><div class="flex items-center gap-space-2xs px-space-xs py-1 rounded bg-surface-container-low text-on-surface-variant"><span class="font-label-caps text-label-caps font-bold">PIDM Member</span><span class="font-body-sm text-body-sm">Protected up to RM500,000</span></div></div><div class="flex flex-col gap-space-xs"><span class="font-label-lg text-label-lg text-on-surface font-bold">Governance &amp; Terms</span><div class="flex flex-col gap-space-2xs font-body-sm text-body-sm text-on-surface-variant"><a class="hover:text-primary transition-colors" href="#">Campaign Terms &amp; Conditions</a><a class="hover:text-primary transition-colors" href="#">Takaful Underwriting Policy</a><a class="hover:text-primary transition-colors" href="#">Privacy Notice &amp; PDPA Compliance</a><a class="hover:text-primary transition-colors" href="#">Security Guidelines &amp; Fraud Alert</a></div></div></div><div class="flex flex-col sm:flex-row items-center justify-between pt-space-md gap-space-sm bg-surface-container-lowest"><p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 Etiqa Insurance &amp; Takaful. All rights reserved. Registered under the laws of Malaysia.</p><div class="flex items-center gap-space-md font-body-sm text-body-sm text-on-surface-variant"><span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-tertiary"></span> Systems Fully Operational</span><span>v2.4.0 Production</span></div></div></div></footer></body></html>
+

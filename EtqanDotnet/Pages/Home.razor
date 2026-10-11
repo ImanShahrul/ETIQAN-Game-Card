@@ -1,0 +1,775 @@
+@page "/"
+@page "/game"
+@page "/Game/game"
+@page "/Game/game.html"
+@implements IAsyncDisposable
+@using System.Text.Json
+@using System.Text.Json.Serialization
+@using Microsoft.JSInterop
+@inject IJSRuntime JS
+@inject NavigationManager Navigation
+
+<PageTitle>ETIQAN Challenge</PageTitle>
+
+<div class="game-page">
+    <header class="game-header">
+        <div class="game-brand">
+            <img src="etiqa-logo.svg" alt="Etiqa logo" />
+            <div><strong>Etiqa ETIQAN Challenge</strong><span>ETIQA INSURANCE &amp; TAKAFUL</span></div>
+        </div>
+        <nav class="game-nav" aria-label="Game navigation">
+            <a href="#">Campaign Overview</a>
+            <a href="#">My ETIQAN Card</a>
+            <a class="active" href="/Game/game.html">Live Weekly Game</a>
+        </nav>
+        <div class="game-header-right"><span class="verified-chip">✓ Active Participant</span><span class="member-name">@(PlayerName ?? "Guest")</span></div>
+    </header>
+
+    <main class="game-main">
+        <section class="game-broadcast-strip">
+            <div class="broadcast-title"><span class="live-dot"></span><div><b>Live Broadcast</b><strong>Etiqa Weekly ETIQAN Challenge • Round 12</strong><small>Official game state is synchronised through Firebase</small></div></div>
+            <div class="broadcast-metrics"><span class="connected-players"><b>♧ CONNECTED</b><strong>@ActivePlayerCount Active Player@(ActivePlayerCount == 1 ? "" : "s")</strong></span><span><b>Always On</b><small>Game status</small></span><span><b>@TickedCount / @CardCellCount</b><small>Card progress</small></span><span><b>Ready</b><small>Card status</small></span></div>
+        </section>
+
+        <div class="game-studio-grid">
+            <aside class="game-left-column">
+                <section class="game-panel caller-panel">
+                    <div class="panel-heading"><span>📣 OFFICIAL CALLER STAGE</span><small>● @(IsGameLive ? "Active" : "Waiting")</small></div>
+                    <div class="caller-stage">
+                        <div class="caller-wait-bar"><b>@(IsGameLive ? "GOOD LUCK!" : "WAITING FOR THE QUESTION")</b><span>⌛ WAIT</span></div>
+                        <div class="live-ball">
+                            <small>@(IsGameLive ? "CURRENT QUESTION" : "GAME PAUSED")</small>
+                            <strong>@(LastCalledQuestion ?? "—")</strong>
+                            <span>Validated</span>
+                        </div>
+                        <div class="caller-question-label">@(LastCalledCategory ?? "Waiting for the official question")</div>
+                        <p>Questions are controlled by the official Firebase game state.</p>
+                    </div>
+                    <div class="audio-bar"><span>🔊 <b>Live Speech Audio Stream</b></span><div class="audio-actions"><small>BM / EN SYNCED</small><button type="button" class="speech-button" @onclick="ReadCurrentQuestionAsync" disabled="@(_module is null || string.IsNullOrWhiteSpace(SpeechText) || IsSpeaking)">@(IsSpeaking ? "READING..." : "READ QUESTION")</button></div></div>
+                </section>
+            </aside>
+
+            <section class="game-panel card-panel">
+                <div class="card-panel-heading"><div><span class="panel-kicker">YOUR ETIQAN CARD</span><h1>Answer questions to complete your line</h1></div></div>
+
+                @if (!string.IsNullOrWhiteSpace(ErrorMessage))
+                {
+                    <div class="game-error">@ErrorMessage</div>
+                }
+
+                <div class="etiqan-headings" aria-hidden="true">
+                    @foreach (var letter in EtqanLetters)
+                    {
+                        <span>@letter</span>
+                    }
+                </div>
+                <div class="game-etiqan-grid" aria-label="ETIQAN question card">
+                    @foreach (var cell in Cells)
+                    {
+                        <button type="button" class="game-etiqan-cell @CellClass(cell)" @onclick="() => SelectCell(cell)" disabled="@(cell.IsTicked || !IsGameLive || string.IsNullOrWhiteSpace(cell.Question))">
+                            @if (!string.IsNullOrWhiteSpace(cell.Category))
+                            {
+                                <span class="game-cell-category">@cell.Category</span>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(cell.Question))
+                            {
+                                <span class="game-cell-question">@cell.Question</span>
+                            }
+                            else
+                            {
+                                <span class="game-cell-question empty">&nbsp;</span>
+                            }
+                            @if (cell.IsTicked)
+                            {
+                                <span class="game-cell-state">✓ Correct</span>
+                            }
+                            else if (cell.IsEliminated)
+                            {
+                                <span class="game-cell-state eliminated-state">✕ Wrong answer</span>
+                                <span class="game-cell-retry">Tap to retry</span>
+                            }
+                        </button>
+                    }
+                </div>
+
+                @if (SelectedCell is not null && !SelectedCell.IsAnswered)
+                {
+                    <div class="question-modal-backdrop" role="dialog" aria-modal="true" aria-label="Answer question" @onclick="CloseQuestionModal">
+                    <div class="answer-panel question-modal" @onclick:stopPropagation="true">
+                        <button type="button" class="question-modal-close" aria-label="Close question" @onclick="CloseQuestionModal">×</button>
+                        <div class="answer-panel-heading">
+                            <span>ANSWER THIS QUESTION</span>
+                            <b>@EtqanLetters[SelectedCell.Column]@(SelectedCell.Row + 1)</b>
+                        </div>
+                        <p>@SelectedCell.Question</p>
+                        <div class="answer-options">
+                            @foreach (var option in GetAnswerOptions(SelectedCell))
+                            {
+                                <button type="button" @onclick="() => SubmitAnswerAsync(SelectedCell!, option.Key)" disabled="@IsAnswering">
+                                    <b>@option.Key</b><span>@option.Text</span>
+                                </button>
+                            }
+                        </div>
+                    </div>
+                    </div>
+                }
+
+                @if (!string.IsNullOrWhiteSpace(AnswerFeedback))
+                {
+                    <div class="answer-feedback @(LastAnswerCorrect == true ? "correct" : "wrong")">@AnswerFeedback</div>
+                }
+
+                <div class="game-pattern-progress"><div><span>Pattern Progress: @(TickedCount == 0 ? "Waiting for answers" : $"{TickedCount} of {CardCellCount} completed")</span><b>@(TickedCount == 0 ? "Card loading" : $"{ProgressPercent}%")</b></div><div class="game-progress-track"><span style="width:@ProgressPercent%"></span></div></div>
+                <div class="game-state-box"><div><b>● LIVE GAME STATE</b><span>@(IsGameLive ? "Question active" : "Game paused")</span></div><p>@(IsGameLive ? "Answer the current question to validate the selected box." : "The game will begin when the official Firebase game state is active.")</p></div>
+            </section>
+
+            <aside class="game-right-column">
+                <section class="game-panel radar-panel"><div class="right-title"><b>Winners Radar</b><span>Live</span></div><div class="radar-summary">◉ Monitoring confirmed ETIQAN cards</div><div class="radar-row"><span>● MY-**882</span><b>Needs 1 answer</b></div><div class="radar-row"><span>● MY-**402 (You)</span><b>@(Math.Max(0, CardCellCount - TickedCount)) boxes away</b></div><div class="radar-row"><span>● MY-**917</span><b>Needs 2 answers</b></div></section>
+                <section class="game-panel previous-panel"><div class="right-title"><b>Previous Winner</b><span>🏆</span></div><div class="previous-winner"><strong>—</strong><div><b>No winner yet</b><small>Waiting for completed round data</small></div></div></section>
+                <section class="game-panel prize-panel">
+                    <div class="right-title"><b>Weekly Prize Allocation</b><span>🏅</span></div>
+                    <div class="prize-tier bingo-tier">
+                        <div class="prize-tier-icon">10</div>
+                        <div><b>Top 10 Bingo Winners</b><small>RM10 prize each</small></div>
+                        <span class="prize-tier-rule">1 row, column or cross</span>
+                    </div>
+                    <div class="prize-tier ultimate-tier">
+                        <div class="prize-tier-icon">5</div>
+                        <div><b>Ultimate Winners</b><small>5 winners</small></div>
+                        <span class="prize-tier-rule">Complete any 3 Bingo patterns</span>
+                    </div>
+                    <div class="prize-tier grand-tier">
+                        <div class="prize-tier-icon">1</div>
+                        <div><b>Grand Ultimate Winner</b><small>RM100 Voucher</small></div>
+                        <span class="prize-tier-rule">Complete all questions</span>
+                    </div>
+                    <div class="prize-status"><b>Your reward status</b><span>@RewardTierLabel</span></div>
+                </section>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="game-footer"><span>Etiqa Insurance &amp; Takaful • Official ETIQAN Challenge</span><span>Systems Fully Operational</span></footer>
+</div>
+
+    @if (ShowBingoModal)
+    {
+        <div class="bingo-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="bingo-title">
+            <section class="bingo-modal">
+                <button type="button" class="bingo-modal-close" aria-label="Close" @onclick="CloseBingoModal">×</button>
+                <div class="bingo-badge">BINGO!</div>
+                <h2 id="bingo-title">Congratulations!</h2>
+                <p>You completed <strong>@CompletedBingoLine</strong> on your ETIQAN card.</p>
+                <div class="bingo-prize">@RewardModalMessage</div>
+                <small>@RewardEligibilityMessage</small>
+                <button type="button" class="bingo-continue" @onclick="CloseBingoModal">Continue playing</button>
+            </section>
+        </div>
+    }
+
+@code {
+    private static readonly string[] EtqanLetters = ["E", "T", "I", "Q", "A", "N"];
+    private const int CardCellCount = 36;
+    private static readonly JsonSerializerOptions JsonOptions = new() { PropertyNameCaseInsensitive = true };
+
+    private readonly List<EtqanCell> Cells = Enumerable.Range(0, CardCellCount)
+        .Select(index => new EtqanCell { Index = index, Row = index / 6, Column = index % 6 })
+        .ToList();
+
+    private IJSObjectReference? _module;
+    private DotNetObjectReference<Home>? _dotnetReference;
+    private string? ErrorMessage;
+    private string? LastCalledQuestion;
+    private string? LastCalledCategory;
+    private string? PlayerName;
+    private bool IsGameLive = true;
+    private int ActivePlayerCount = 1;
+    private FirebaseCardDocument? SavedCardSnapshot;
+    private List<FirebaseQuestion> QuestionBank = [];
+    private EtqanCell? SelectedCell;
+    private bool IsAnswering;
+    private string? AnswerFeedback;
+    private bool? LastAnswerCorrect;
+    private bool IsSpeaking;
+    private bool ShowBingoModal;
+    private string? LastAnnouncedRewardTier;
+    private string? CompletedBingoLine;
+    private int TickedCount => Cells.Count(cell => cell.IsTicked);
+    private int ProgressPercent => (int)Math.Round(TickedCount / (double)CardCellCount * 100);
+    private string? SpeechText => SelectedCell?.Question ?? LastCalledQuestion;
+    private int CompletedBingoCount => GetCompletedBingoCount();
+    private bool HasCompletedAllQuestions => TickedCount == CardCellCount;
+    private string? CurrentRewardTier => HasCompletedAllQuestions ? "grand" : CompletedBingoCount >= 3 ? "ultimate" : GetWinningPattern() is not null ? "bingo" : null;
+    private string RewardTierLabel => CurrentRewardTier switch
+    {
+        "grand" => "Grand Ultimate — 1 winner",
+        "ultimate" => $"Ultimate — {CompletedBingoCount} Bingo patterns completed",
+        "bingo" => "Bingo — Top 10 places",
+        _ => "Not qualified yet"
+    };
+    private string RewardModalMessage => CurrentRewardTier switch
+    {
+        "grand" => "You completed all questions and qualify for the Grand Ultimate Winner prize.",
+        "ultimate" => $"You completed {CompletedBingoCount} Bingo patterns and qualify for 1 of 5 Ultimate Winner places.",
+        _ => "You qualify for the Top 10 Bingo Winners prize: RM10."
+    };
+    private string RewardEligibilityMessage => CurrentRewardTier switch
+    {
+        "grand" => "The official system will confirm the single Grand Ultimate Winner.",
+        "ultimate" => "Ultimate Winners complete at least 3 Bingo patterns: rows, columns or diagonals.",
+        _ => "Bingo Winners are participants who complete a row, column or cross pattern."
+    };
+
+    protected override Task OnInitializedAsync()
+    {
+        var uri = new Uri(Navigation.Uri);
+        PlayerName = GetQueryParameter(uri.Query, "playerName");
+        return Task.CompletedTask;
+    }
+
+    private static string? GetQueryParameter(string query, string key)
+    {
+        foreach (var item in query.TrimStart('?').Split('&', StringSplitOptions.RemoveEmptyEntries))
+        {
+            var parts = item.Split('=', 2);
+            if (parts.Length == 2 && string.Equals(Uri.UnescapeDataString(parts[0]), key, StringComparison.OrdinalIgnoreCase))
+            {
+                return Uri.UnescapeDataString(parts[1].Replace('+', ' '));
+            }
+        }
+        return null;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+        {
+            return;
+        }
+
+        try
+        {
+            _module = await JS.InvokeAsync<IJSObjectReference>("import", "./firebase-interop.js");
+            _dotnetReference = DotNetObjectReference.Create(this);
+            await _module.InvokeVoidAsync("start", _dotnetReference);
+        }
+        catch (Exception exception)
+        {
+            ErrorMessage = $"Firebase connection failed: {exception.Message}";
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    [JSInvokable]
+    public Task OnActivePlayerCount(int count)
+    {
+        ActivePlayerCount = Math.Max(1, count);
+        return InvokeAsync(StateHasChanged);
+    }
+
+    [JSInvokable]
+    public Task OnCardSnapshot(string json)
+    {
+        try
+        {
+            var snapshot = JsonSerializer.Deserialize<FirebaseCardDocument>(json, JsonOptions);
+            if (snapshot is not null)
+            {
+                SavedCardSnapshot = snapshot;
+                ApplySavedCardSnapshot(snapshot);
+                CheckForBingo();
+            }
+        }
+        catch (Exception exception) { ErrorMessage = $"Could not read card data: {exception.Message}"; }
+        return InvokeAsync(StateHasChanged);
+    }
+
+    [JSInvokable]
+    public Task OnQuestionSnapshot(string json)
+    {
+        try
+        {
+            var questions = JsonSerializer.Deserialize<List<FirebaseQuestion>>(json, JsonOptions) ?? [];
+            QuestionBank = questions;
+            ApplyQuestionBank(QuestionBank);
+        }
+        catch (Exception exception) { ErrorMessage = $"Could not read question data: {exception.Message}"; }
+        return InvokeAsync(StateHasChanged);
+    }
+
+    [JSInvokable]
+    public Task OnQuestionError(string message)
+    {
+        ErrorMessage = $"Questions could not be loaded from Firebase: {message}";
+        return InvokeAsync(StateHasChanged);
+    }
+
+    [JSInvokable]
+    public Task OnGameSnapshot(string json)
+    {
+        try
+        {
+            var snapshot = JsonSerializer.Deserialize<FirebaseGameState>(json, JsonOptions);
+            // The ETIQAN game is intentionally always available. Firebase still
+            // supplies the latest question, but it no longer pauses the UI.
+            IsGameLive = true;
+            LastCalledQuestion = snapshot?.Question;
+            LastCalledCategory = snapshot?.Category;
+            if (snapshot?.Questions is { Count: > 0 } questions)
+            {
+                QuestionBank = questions;
+                ApplyQuestionBank(QuestionBank);
+            }
+        }
+        catch (Exception exception) { ErrorMessage = $"Could not read game state: {exception.Message}"; }
+        return InvokeAsync(StateHasChanged);
+    }
+
+    private async Task ReadCurrentQuestionAsync()
+    {
+        if (_module is null || string.IsNullOrWhiteSpace(SpeechText) || IsSpeaking) return;
+
+        IsSpeaking = true;
+        ErrorMessage = null;
+        try { await _module.InvokeVoidAsync("speakQuestion", SpeechText); }
+        catch (Exception exception) { ErrorMessage = $"Could not read the question aloud: {exception.Message}"; }
+        finally { IsSpeaking = false; }
+    }
+
+    private async Task SelectCell(EtqanCell cell)
+    {
+        if (cell.IsTicked || !IsGameLive) return;
+        if (cell.NeedsRetry)
+        {
+            await RetryCellAsync(cell);
+            return;
+        }
+
+        SelectedCell = cell;
+        AnswerFeedback = null;
+        LastAnswerCorrect = null;
+        ErrorMessage = null;
+    }
+
+    private async Task RetryCellAsync(EtqanCell cell)
+    {
+        if (_module is null || IsAnswering) return;
+
+        var replacementQuestion = GetNextQuestion(cell);
+        if (replacementQuestion is null)
+        {
+            ErrorMessage = "There are no unused replacement questions for this ETIQAN letter yet.";
+            return;
+        }
+
+        IsAnswering = true;
+        ErrorMessage = null;
+        try
+        {
+            var state = Cells.Select(item => new
+            {
+                index = item.Index,
+                questionId = item.Index == cell.Index ? replacementQuestion.Id : item.QuestionId,
+                question = item.Index == cell.Index ? QuestionText(replacementQuestion) : item.Question,
+                category = item.Index == cell.Index ? replacementQuestion.Category ?? item.Category : item.Category,
+                optionA = item.Index == cell.Index ? replacementQuestion.OptionA ?? item.OptionA : item.OptionA,
+                optionB = item.Index == cell.Index ? replacementQuestion.OptionB ?? item.OptionB : item.OptionB,
+                optionC = item.Index == cell.Index ? replacementQuestion.OptionC ?? item.OptionC : item.OptionC,
+                correctOption = item.Index == cell.Index ? replacementQuestion.CorrectOption ?? item.CorrectOption : item.CorrectOption,
+                correctAnswer = item.Index == cell.Index ? replacementQuestion.CorrectAnswer ?? item.CorrectAnswer : item.CorrectAnswer,
+                usedQuestionIds = item.Index == cell.Index
+                    ? item.UsedQuestionIds.Append(QuestionKey(replacementQuestion)).Distinct(StringComparer.OrdinalIgnoreCase).ToList()
+                    : item.UsedQuestionIds.ToList(),
+                isTicked = item.IsTicked,
+                isEliminated = item.Index == cell.Index ? false : item.IsEliminated,
+                answered = item.Index == cell.Index ? false : item.IsAnswered
+            }).ToList();
+
+            await _module.InvokeVoidAsync("saveCardState", state);
+            SetCellQuestion(cell, replacementQuestion);
+            cell.IsTicked = false;
+            cell.IsEliminated = false;
+            cell.IsAnswered = false;
+            cell.NeedsRetry = false;
+            SelectedCell = cell;
+            AnswerFeedback = null;
+            LastAnswerCorrect = null;
+        }
+        catch (Exception exception)
+        {
+            ErrorMessage = $"Could not load the replacement question: {exception.Message}";
+        }
+        finally
+        {
+            IsAnswering = false;
+        }
+    }
+
+    private static IEnumerable<(string Key, string Text)> GetAnswerOptions(EtqanCell cell)
+    {
+        if (!string.IsNullOrWhiteSpace(cell.OptionA)) yield return ("A", cell.OptionA);
+        if (!string.IsNullOrWhiteSpace(cell.OptionB)) yield return ("B", cell.OptionB);
+        if (!string.IsNullOrWhiteSpace(cell.OptionC)) yield return ("C", cell.OptionC);
+    }
+
+    private async Task SubmitAnswerAsync(EtqanCell cell, string selectedOption)
+    {
+        if (_module is null || IsAnswering || cell.IsAnswered) return;
+
+        IsAnswering = true;
+        ErrorMessage = null;
+        var isCorrect = string.Equals(selectedOption, cell.CorrectOption, StringComparison.OrdinalIgnoreCase)
+            || (string.IsNullOrWhiteSpace(cell.CorrectOption)
+                && string.Equals(GetOptionText(cell, selectedOption), cell.CorrectAnswer, StringComparison.OrdinalIgnoreCase));
+        try
+        {
+            var state = Cells.Select(item => new
+            {
+                index = item.Index,
+                questionId = item.QuestionId,
+                question = item.Question,
+                category = item.Category,
+                optionA = item.OptionA,
+                optionB = item.OptionB,
+                optionC = item.OptionC,
+                correctOption = item.CorrectOption,
+                correctAnswer = item.CorrectAnswer,
+                usedQuestionIds = item.UsedQuestionIds.ToList(),
+                isTicked = item.IsTicked || (item.Index == cell.Index && isCorrect),
+                isEliminated = item.Index == cell.Index ? !isCorrect : item.IsEliminated,
+                answered = item.Index == cell.Index ? true : item.IsAnswered
+            }).ToList();
+
+            await _module.InvokeVoidAsync("saveAnswer", cell.Index, isCorrect, state);
+            cell.IsAnswered = true;
+            cell.IsTicked = isCorrect;
+            cell.IsEliminated = !isCorrect;
+            cell.NeedsRetry = !isCorrect;
+            SelectedCell = null;
+            CheckForBingo();
+            LastAnswerCorrect = isCorrect;
+            AnswerFeedback = isCorrect
+                ? "Correct answer — this box is now green and completed."
+                : "Wrong answer — the box is red. Tap to retry for a new question.";
+        }
+        catch (Exception exception)
+        {
+            ErrorMessage = $"Could not save your answer: {exception.Message}";
+        }
+        finally
+        {
+            IsAnswering = false;
+        }
+    }
+
+    private static string GetOptionText(EtqanCell cell, string key) => key switch
+    {
+        "A" => cell.OptionA,
+        "B" => cell.OptionB,
+        "C" => cell.OptionC,
+        _ => string.Empty
+    };
+
+    private static string CellClass(EtqanCell cell) => cell.IsEliminated ? "eliminated" : cell.IsTicked ? "ticked" : string.Empty;
+
+    private void CheckForBingo()
+    {
+        var rewardTier = CurrentRewardTier;
+        if (rewardTier is null || string.Equals(rewardTier, LastAnnouncedRewardTier, StringComparison.Ordinal)) return;
+
+        CompletedBingoLine = rewardTier switch
+        {
+            "grand" => "all 36 questions",
+            "ultimate" => $"{CompletedBingoCount} Bingo patterns",
+            _ => GetWinningPattern() ?? "a winning pattern"
+        };
+        LastAnnouncedRewardTier = rewardTier;
+        ShowBingoModal = true;
+    }
+
+    private string? GetWinningPattern()
+    {
+        for (var row = 0; row < 6; row++)
+        {
+            var rowCells = Cells.Where(cell => cell.Row == row).ToList();
+            if (rowCells.Count == 6 && rowCells.All(cell => cell.IsTicked)) return $"Row {row + 1}";
+        }
+
+        for (var column = 0; column < 6; column++)
+        {
+            var columnCells = Cells.Where(cell => cell.Column == column).ToList();
+            if (columnCells.Count == 6 && columnCells.All(cell => cell.IsTicked)) return $"column {EtqanLetters[column]}";
+        }
+
+        var mainDiagonal = Cells.Where(cell => cell.Row == cell.Column).ToList();
+        var reverseDiagonal = Cells.Where(cell => cell.Row + cell.Column == 5).ToList();
+        var hasMainDiagonal = mainDiagonal.Count == 6 && mainDiagonal.All(cell => cell.IsTicked);
+        var hasReverseDiagonal = reverseDiagonal.Count == 6 && reverseDiagonal.All(cell => cell.IsTicked);
+
+        if (hasMainDiagonal && hasReverseDiagonal) return "Cross (X) pattern";
+        if (hasMainDiagonal) return "diagonal (\\)";
+        if (hasReverseDiagonal) return "diagonal (/)";
+        return null;
+    }
+
+    private int GetCompletedBingoCount()
+    {
+        var count = 0;
+
+        for (var row = 0; row < 6; row++)
+        {
+            var rowCells = Cells.Where(cell => cell.Row == row).ToList();
+            if (rowCells.Count == 6 && rowCells.All(cell => cell.IsTicked)) count++;
+        }
+
+        for (var column = 0; column < 6; column++)
+        {
+            var columnCells = Cells.Where(cell => cell.Column == column).ToList();
+            if (columnCells.Count == 6 && columnCells.All(cell => cell.IsTicked)) count++;
+        }
+
+        var mainDiagonal = Cells.Where(cell => cell.Row == cell.Column).ToList();
+        var reverseDiagonal = Cells.Where(cell => cell.Row + cell.Column == 5).ToList();
+        if (mainDiagonal.Count == 6 && mainDiagonal.All(cell => cell.IsTicked)) count++;
+        if (reverseDiagonal.Count == 6 && reverseDiagonal.All(cell => cell.IsTicked)) count++;
+
+        return count;
+    }
+
+    private void CloseBingoModal() => ShowBingoModal = false;
+
+    private void CloseQuestionModal() => SelectedCell = null;
+
+    private void ApplyQuestionBank(IEnumerable<FirebaseQuestion> questions)
+    {
+        // All six ETIQAN columns are now published in Firebase.
+        foreach (var letter in new[] { "E", "T", "I", "Q", "A", "N" })
+        {
+            var column = Array.IndexOf(EtqanLetters, letter);
+            var columnCells = Cells.Where(cell => cell.Column == column).OrderBy(cell => cell.Row).ToList();
+            foreach (var cell in columnCells)
+            {
+                cell.Question = string.Empty;
+                cell.Category = string.Empty;
+                cell.QuestionId = string.Empty;
+                cell.OptionA = string.Empty;
+                cell.OptionB = string.Empty;
+                cell.OptionC = string.Empty;
+                cell.CorrectOption = string.Empty;
+                cell.CorrectAnswer = string.Empty;
+                cell.UsedQuestionIds.Clear();
+            }
+
+            ApplyQuestionColumn(questions, letter, columnCells);
+        }
+
+        if (SavedCardSnapshot is not null)
+        {
+            ApplySavedCardSnapshot(SavedCardSnapshot);
+        }
+    }
+
+    private static void ApplyQuestionColumn(IEnumerable<FirebaseQuestion> questions, string letter, List<EtqanCell> columnCells)
+    {
+        var matchingQuestions = questions
+            .Where(question => string.Equals(ResolveQuestionLetter(question), letter, StringComparison.OrdinalIgnoreCase))
+            .Where(question => !string.IsNullOrWhiteSpace(QuestionText(question)))
+            .OrderBy(question => question.Order ?? int.MaxValue)
+            .ThenBy(question => question.Row ?? int.MaxValue)
+            .ThenBy(question => question.Index ?? int.MaxValue)
+            .ThenBy(question => question.Id, StringComparer.OrdinalIgnoreCase)
+            .ToList();
+
+        var usedRows = new HashSet<int>();
+        foreach (var question in matchingQuestions)
+        {
+            var requestedRow = ResolveQuestionRow(question);
+            var target = requestedRow is >= 0 && requestedRow.Value < columnCells.Count && !usedRows.Contains(requestedRow.Value)
+                ? columnCells[requestedRow.Value]
+                : columnCells.FirstOrDefault(cell => !usedRows.Contains(cell.Row));
+
+            if (target is null) break;
+            SetCellQuestion(target, question);
+            usedRows.Add(target.Row);
+        }
+    }
+
+    private void ApplySavedCardSnapshot(FirebaseCardDocument snapshot)
+    {
+        foreach (var incoming in snapshot.Cells ?? [])
+        {
+            if (incoming.Index is < 0 or >= CardCellCount) continue;
+
+            var current = Cells[incoming.Index];
+            current.UsedQuestionIds = new HashSet<string>(incoming.UsedQuestionIds ?? [], StringComparer.OrdinalIgnoreCase);
+
+            var savedQuestion = QuestionBank.FirstOrDefault(question =>
+                string.Equals(QuestionKey(question), incoming.QuestionId, StringComparison.OrdinalIgnoreCase));
+            if (savedQuestion is not null)
+            {
+                SetCellQuestion(current, savedQuestion);
+            }
+            else if (!string.IsNullOrWhiteSpace(incoming.Question))
+            {
+                current.Question = incoming.Question;
+                current.Category = incoming.Category ?? string.Empty;
+                current.QuestionId = incoming.QuestionId ?? string.Empty;
+                current.OptionA = incoming.OptionA ?? string.Empty;
+                current.OptionB = incoming.OptionB ?? string.Empty;
+                current.OptionC = incoming.OptionC ?? string.Empty;
+                current.CorrectOption = incoming.CorrectOption ?? string.Empty;
+                current.CorrectAnswer = incoming.CorrectAnswer ?? string.Empty;
+            }
+
+            current.IsTicked = incoming.IsTicked;
+            current.IsEliminated = incoming.IsEliminated;
+            current.NeedsRetry = incoming.IsEliminated;
+            current.IsAnswered = incoming.Answered || incoming.IsTicked || incoming.IsEliminated;
+        }
+    }
+
+    private FirebaseQuestion? GetNextQuestion(EtqanCell cell)
+    {
+        var letter = EtqanLetters[cell.Column];
+        var usedByOtherCells = Cells
+            .Where(other => other.Column == cell.Column && other.Index != cell.Index)
+            .SelectMany(other => other.UsedQuestionIds)
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+        usedByOtherCells.UnionWith(cell.UsedQuestionIds);
+
+        return QuestionBank
+            .Where(question => string.Equals(ResolveQuestionLetter(question), letter, StringComparison.OrdinalIgnoreCase))
+            .Where(question => !string.IsNullOrWhiteSpace(QuestionText(question)))
+            .Where(question => !usedByOtherCells.Contains(QuestionKey(question)))
+            .OrderBy(question => question.Order ?? int.MaxValue)
+            .ThenBy(question => question.Row ?? int.MaxValue)
+            .ThenBy(question => question.Index ?? int.MaxValue)
+            .ThenBy(question => question.Id, StringComparer.OrdinalIgnoreCase)
+            .FirstOrDefault();
+    }
+
+    private static string QuestionKey(FirebaseQuestion question) =>
+        !string.IsNullOrWhiteSpace(question.Id) ? question.Id! : $"{ResolveQuestionLetter(question)}:{QuestionText(question)}";
+
+    private static void SetCellQuestion(EtqanCell target, FirebaseQuestion question)
+    {
+        target.Question = QuestionText(question);
+        target.Category = question.Category ?? string.Empty;
+        target.QuestionId = question.Id ?? string.Empty;
+        target.OptionA = question.OptionA ?? string.Empty;
+        target.OptionB = question.OptionB ?? string.Empty;
+        target.OptionC = question.OptionC ?? string.Empty;
+        target.CorrectOption = question.CorrectOption ?? string.Empty;
+        target.CorrectAnswer = question.CorrectAnswer ?? string.Empty;
+        target.UsedQuestionIds.Add(QuestionKey(question));
+    }
+
+    private static string ResolveQuestionLetter(FirebaseQuestion question)
+    {
+        var value = question.Letter?.Trim();
+        if (!string.IsNullOrWhiteSpace(value)) return value[..1].ToUpperInvariant();
+
+        var id = question.Id?.Trim().ToUpperInvariant() ?? string.Empty;
+        return System.Text.RegularExpressions.Regex.IsMatch(id, @"^[ET](?:[-_ ]?\d+)?$")
+            ? id[..1]
+            : string.Empty;
+    }
+
+    private static int? ResolveQuestionRow(FirebaseQuestion question)
+    {
+        if (question.Row is >= 0 and <= 6)
+        {
+            return question.Row == 0 ? 0 : question.Row - 1;
+        }
+
+        if (question.Index is >= 0 and <= 35)
+        {
+            return question.Index < 6 ? question.Index : question.Index / 6;
+        }
+
+        return null;
+    }
+
+    private static string QuestionText(FirebaseQuestion question) =>
+        question.Question ?? question.Text ?? question.Prompt ?? string.Empty;
+
+    public async ValueTask DisposeAsync()
+    {
+        try
+        {
+            if (_module is not null) { await _module.InvokeVoidAsync("stop"); await _module.DisposeAsync(); }
+        }
+        catch (JSDisconnectedException) { }
+        _dotnetReference?.Dispose();
+    }
+
+    private sealed class EtqanCell
+    {
+        public int Index { get; set; }
+        public int Row { get; set; }
+        public int Column { get; set; }
+        public string Question { get; set; } = string.Empty;
+        public string Category { get; set; } = string.Empty;
+        public string QuestionId { get; set; } = string.Empty;
+        public string OptionA { get; set; } = string.Empty;
+        public string OptionB { get; set; } = string.Empty;
+        public string OptionC { get; set; } = string.Empty;
+        public string CorrectOption { get; set; } = string.Empty;
+        public string CorrectAnswer { get; set; } = string.Empty;
+        public HashSet<string> UsedQuestionIds { get; set; } = new(StringComparer.OrdinalIgnoreCase);
+        public bool IsTicked { get; set; }
+        public bool IsEliminated { get; set; }
+        public bool NeedsRetry { get; set; }
+        public bool IsAnswered { get; set; }
+    }
+
+    private sealed class FirebaseCardDocument
+    {
+        [JsonPropertyName("locked")] public bool Locked { get; set; }
+        [JsonPropertyName("cells")] public List<FirebaseCell>? Cells { get; set; }
+    }
+
+    private sealed class FirebaseCell
+    {
+        [JsonPropertyName("index")] public int Index { get; set; }
+        [JsonPropertyName("questionId")] public string? QuestionId { get; set; }
+        [JsonPropertyName("question")] public string? Question { get; set; }
+        [JsonPropertyName("category")] public string? Category { get; set; }
+        [JsonPropertyName("optionA")] public string? OptionA { get; set; }
+        [JsonPropertyName("optionB")] public string? OptionB { get; set; }
+        [JsonPropertyName("optionC")] public string? OptionC { get; set; }
+        [JsonPropertyName("correctOption")] public string? CorrectOption { get; set; }
+        [JsonPropertyName("correctAnswer")] public string? CorrectAnswer { get; set; }
+        [JsonPropertyName("usedQuestionIds")] public List<string>? UsedQuestionIds { get; set; }
+        [JsonPropertyName("isTicked")] public bool IsTicked { get; set; }
+        [JsonPropertyName("isEliminated")] public bool IsEliminated { get; set; }
+        [JsonPropertyName("answered")] public bool Answered { get; set; }
+    }
+
+    private sealed class FirebaseGameState
+    {
+        [JsonPropertyName("isLive")] public bool IsLive { get; set; }
+        [JsonPropertyName("question")] public string? Question { get; set; }
+        [JsonPropertyName("category")] public string? Category { get; set; }
+        [JsonPropertyName("questions")] public List<FirebaseQuestion>? Questions { get; set; }
+    }
+
+    private sealed class FirebaseQuestion
+    {
+        [JsonPropertyName("id")] public string? Id { get; set; }
+        [JsonPropertyName("letter")] public string? Letter { get; set; }
+        [JsonPropertyName("row")] public int? Row { get; set; }
+        [JsonPropertyName("index")] public int? Index { get; set; }
+        [JsonPropertyName("order")] public int? Order { get; set; }
+        [JsonPropertyName("question")] public string? Question { get; set; }
+        [JsonPropertyName("text")] public string? Text { get; set; }
+        [JsonPropertyName("prompt")] public string? Prompt { get; set; }
+        [JsonPropertyName("category")] public string? Category { get; set; }
+        [JsonPropertyName("optionA")] public string? OptionA { get; set; }
+        [JsonPropertyName("optionB")] public string? OptionB { get; set; }
+        [JsonPropertyName("optionC")] public string? OptionC { get; set; }
+        [JsonPropertyName("correctOption")] public string? CorrectOption { get; set; }
+        [JsonPropertyName("correctAnswer")] public string? CorrectAnswer { get; set; }
+    }
+}

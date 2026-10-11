@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<script type="module" src="../player-counter.js"></script>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-error": "#ffffff", "on-tertiary-fixed-variant": "#005137", "inverse-on-surface": "#eaf1ff", "tertiary-container": "#50c594", "surface-container-low": "#eff4ff", "tertiary": "#006c4a", "secondary-fixed": "#dae2fd", "outline": "#867461", "primary-fixed": "#ffddb8", "on-primary-container": "#613b00", "on-surface-variant": "#534434", "primary": "#855300", "background": "#f8f9ff", "outline-variant": "#d8c3ad", "secondary-fixed-dim": "#bec6e0", "surface-container-high": "#dce9ff", "on-secondary-fixed": "#131b2e", "on-error-container": "#93000a", "surface-container-highest": "#d3e4fe", "on-primary": "#ffffff", "secondary": "#565e74", "error-container": "#ffdad6", "error": "#ba1a1a", "surface-variant": "#d3e4fe", "inverse-primary": "#ffb95f", "on-secondary": "#ffffff", "tertiary-fixed": "#85f8c4", "on-primary-fixed-variant": "#653e00", "primary-fixed-dim": "#ffb95f", "on-tertiary-container": "#004e35", "surface-bright": "#f8f9ff", "on-tertiary": "#ffffff", "tertiary-fixed-dim": "#68dba9", "on-secondary-container": "#5c647a", "surface-dim": "#cbdbf5", "surface-container-lowest": "#ffffff", "surface": "#f8f9ff", "on-surface": "#0b1c30", "on-tertiary-fixed": "#002114", "on-secondary-fixed-variant": "#3f465c", "primary-container": "#f59e0b", "on-background": "#0b1c30", "surface-tint": "#855300", "secondary-container": "#dae2fd", "surface-container": "#e5eeff", "inverse-surface": "#213145", "on-primary-fixed": "#2a1700" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-2xs": "0.25rem", "grid-max-width": "75rem", "space-xs": "0.5rem", "space-xl": "2rem", "space-lg": "1.5rem", "gutter-desktop": "1.5rem", "space-sm": "0.75rem", "gutter-mobile": "1rem", "space-md": "1rem", "space-3xl": "4rem", "space-2xl": "3rem" }, fontFamily: { "display-hero": ["Plus Jakarta Sans"], "label-caps": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "display-hero-mobile": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "headline-xl-mobile": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"] }, fontSize: { "display-hero": ["44px", { lineHeight: "52px", letterSpacing: "-0.02em", fontWeight: "800" }], "label-caps": ["11px", { lineHeight: "14px", letterSpacing: "0.06em", fontWeight: "700" }], "label-lg": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "600" }], "display-hero-mobile": ["32px", { lineHeight: "40px", letterSpacing: "-0.015em", fontWeight: "800" }], "headline-xl": ["30px", { lineHeight: "38px", letterSpacing: "-0.015em", fontWeight: "700" }], "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }], "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "600" }], "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }], "headline-lg": ["22px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "700" }], "headline-xl-mobile": ["24px", { lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "700" }], "headline-md": ["18px", { lineHeight: "24px", letterSpacing: "-0.005em", fontWeight: "600" }], "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }] } } } }</script></head><body data-game-presence="true" class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 bg-surface-container-lowest/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 max-w-grid-max-width mx-auto px-gutter-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm"><img alt="Etiqa logo" class="h-8 w-auto object-contain" src="../etiqa-logo.svg"/><div class="flex flex-col border-l border-outline-variant pl-space-sm"><span class="font-headline-md text-headline-md text-on-surface leading-tight">Etiqa Bingo Challenge</span><span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Etiqa Insurance &amp; Takaful</span></div></div><nav class="hidden xl:flex items-center gap-space-2xs" data-active-classes="bg-primary-container text-on-primary-container font-label-lg font-bold rounded-lg shadow-sm"><a class="px-space-sm py-space-xs font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface rounded-lg transition-all" data-path="campaign-overview" href="overview.html">Campaign Overview</a><a class="px-space-sm py-space-xs font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface rounded-lg transition-all" data-path="my-bingo-card" href="#">My Bingo Card</a><a aria-current="page" class="px-space-sm py-space-xs transition-all bg-primary-container text-on-primary-container font-label-lg font-bold rounded-lg shadow-sm" data-path="live-weekly-draw" href="#">Live Weekly Draw</a></nav><div class="flex items-center gap-space-sm"><div class="hidden sm:flex items-center gap-space-2xs px-space-sm py-space-xs rounded-full bg-secondary-container text-on-secondary-container"><span class="material-symbols-outlined text-base">verified_user</span><span class="font-label-caps text-label-caps uppercase">Active Participant</span></div><div class="hidden md:flex items-center gap-space-2xs px-space-sm py-space-xs rounded-full bg-primary-fixed text-on-primary-fixed"><span class="material-symbols-outlined text-base text-primary">timer</span><span class="font-label-md text-label-md"><span class="font-semibold">Next Draw:</span> Every Wednesday 4:00 PM (<span id="nextDrawCountdownText">--</span>)</span></div><div class="flex items-center gap-space-2xs pl-space-xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCC_70yOvLnszbhzq4MBsA5qlf7wRIuOZNwBnxZ7b4ib_0_wFlSdWzqLJoo_krPD-4UoglOAJpAd3CzfF5KfkBo9Zi_1t7oTJRi64lH4FM4KMoYP7eiKbbB6OUeoXDrxcnXcxYkne_9LHkavazMeICmGgppJ28TrCFfNnvUbVzUbyJTk9nQS40cGoUNI6FDAWlQ1yWNAzbdYQ9SXBySgd_KAub_oxaKavaOdoO9OKltXs_OaI9-NQ"/><div class="hidden lg:flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface">Ahmad Razak</span><span class="font-body-sm text-body-sm text-on-surface-variant">Premier Member</span></div></div></div></div></header><main class="w-full pt-20 bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- Live Draw Global Status Strip -->
+<section class="w-full bg-surface-container-lowest shadow-sm mb-space-lg">
+<div class="max-w-grid-max-width mx-auto px-gutter-desktop py-space-sm flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="flex items-center gap-space-2xs px-space-xs py-1 rounded-full bg-surface-container text-on-surface">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-tertiary"></span>
+</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wide">Live Broadcast</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-on-surface">Etiqa Weekly ETIQAN Challenge • Round 12</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Ball 18 of 75 Drawn • Supervised by Shariah Governance &amp; PIDM Compliance</span>
+</div>
+</div>
+<div class="flex items-center flex-wrap gap-space-md">
+<!-- Next Number Ring Timer -->
+<div class="flex items-center gap-space-xs bg-primary-fixed/20 border border-outline-variant/30 px-space-sm py-1.5 rounded-lg shadow-sm"><div class="relative w-8 h-8 flex items-center justify-center"><svg class="w-8 h-8 transform -rotate-90" viewbox="0 0 36 36"><path class="text-outline-variant/40" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3.5"></path><path class="text-primary-container transition-all duration-1000 ease-linear" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" id="topTimerCircle" stroke="currentColor" stroke-dasharray="80, 100" stroke-linecap="round" stroke-width="3.5"></path></svg><span class="absolute font-label-caps text-label-caps text-primary font-bold" id="topTimerSecText">08s</span></div><div class="flex flex-col"><span class="font-label-caps text-label-caps text-on-surface-variant uppercase flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span> <span id="topTimerStatusLabel">Waiting For The Question</span></span><span class="font-label-md text-label-md text-primary font-extrabold" id="topTimerSubText">Waiting For The Question</span></div></div>
+<!-- Participants Count -->
+<div class="flex items-center gap-space-2xs px-space-sm py-1.5 rounded-lg bg-surface-container-low shadow-sm">
+<span class="material-symbols-outlined text-tertiary text-lg">group</span>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Connected</span>
+<span class="font-label-md text-label-md text-on-surface font-bold" data-active-player-count>Loading...</span>
+</div>
+</div>
+<!-- Winning Rule Chip -->
+<div class="flex items-center gap-space-2xs px-space-sm py-1.5 rounded-lg bg-secondary-container text-on-secondary-container">
+<span class="material-symbols-outlined text-lg">check_box</span>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps uppercase tracking-tight">Active Winning Rule</span>
+<span class="font-label-md text-label-md font-bold">Single Horizontal Line OR 4 Corners</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Game 3-Column Studio Grid -->
+<div class="max-w-grid-max-width mx-auto px-gutter-desktop w-full grid grid-cols-1 lg:grid-cols-12 gap-space-lg mb-space-2xl">
+<!-- LEFT COLUMN (3 cols): Current Number Caller -->
+<div class="lg:col-span-3 xl:col-span-3 flex flex-col gap-space-md">
+<!-- Current Ball Showcase -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col relative overflow-hidden">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-2xs">
+<span class="material-symbols-outlined text-primary text-base">campaign</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-primary font-bold">Official Caller Stage</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Called 00:06 ago
+          </span>
+</div>
+<!-- Sphere Centerpiece -->
+<div class="py-space-md flex flex-col items-center justify-center bg-surface-container-low rounded-xl"><div class="mb-space-sm w-11/12 mx-auto flex items-center justify-between px-space-sm py-1.5 rounded-full bg-surface-container-lowest shadow-sm border border-outline-variant/20"><div class="flex items-center gap-1.5"><span class="relative flex h-2.5 w-2.5"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span><span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span></span><span class="font-label-caps text-label-caps text-on-surface font-bold uppercase tracking-wider" id="callerStatusLabel">Waiting For The Question</span></div><div class="flex items-center gap-1 bg-primary-container text-on-primary-container font-mono font-bold px-2 py-0.5 rounded-full text-xs shadow-xs"><span class="material-symbols-outlined text-xs">hourglass_top</span><span class="" id="callerCountdownTimer">00:08s</span></div></div>
+<div class="relative w-36 h-36 rounded-full flex items-center justify-center shadow-lg bg-gradient-to-br from-primary-fixed via-primary-container to-primary text-on-surface" id="liveBallDisplay">
+<!-- Glowing Ring -->
+<div class="absolute inset-1 rounded-full bg-surface-container-lowest/90 flex flex-col items-center justify-center shadow-inner">
+<span class="font-label-caps text-label-caps text-primary uppercase font-bold tracking-widest" id="currentBallLetter">Letter G</span>
+<span class="font-display-hero text-display-hero text-on-surface font-extrabold tracking-tighter" id="currentBallNumber">55</span>
+<span class="font-label-caps text-label-caps text-tertiary bg-tertiary-fixed/30 px-space-xs rounded-full">Validated</span>
+</div>
+</div>
+<div class="mt-space-sm text-center">
+<div class="font-headline-md text-headline-md text-on-surface font-bold" id="currentBallLabel">G-55 • Green Protection Fifty-Five</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Automated RNG audited under BNM Digital Fairness Framework</p>
+</div>
+</div>
+<!-- Audio Dispatcher Trigger & Announcement Bar -->
+<div class="mt-space-sm flex items-center justify-between p-space-xs rounded-lg bg-surface-container">
+<div class="flex items-center gap-space-xs">
+<button aria-label="Mute / Unmute Audio Caller" class="w-8 h-8 rounded-full bg-on-surface text-surface flex items-center justify-center hover:opacity-90 shadow-sm">
+<span class="material-symbols-outlined text-sm">volume_up</span>
+</button>
+<span class="font-body-sm text-body-sm text-on-surface font-semibold">Live Speech Audio Stream</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase bg-surface-container-lowest px-2 py-0.5 rounded">BM / EN Synced</span>
+</div>
+</div>
+ 
+<!-- Legacy 1-75 audit markup retained for compatibility but removed from the live UI. -->
+<div class="hidden bg-surface-container-lowest p-space-md rounded-xl">
+<div class="flex items-center justify-between mb-space-xs">
+<div>
+<div class="font-label-lg text-label-lg text-on-surface font-bold">Legacy draw markup</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Legacy draw markup</div>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-caps text-label-caps">Supervised</span>
+</div>
+<!-- Compact 5-row representation: B (1-15), I (16-30), N (31-45), G (46-60), O (61-75) -->
+<div class="flex flex-col gap-1.5 pt-space-xs">
+<!-- B Row -->
+<div class="flex items-center gap-1">
+<span class="w-6 font-label-caps text-label-caps font-bold text-on-surface-variant text-center">B</span>
+<div class="grid grid-cols-15 flex-1 gap-0.5">
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">1</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">2</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">3</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">4</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">5</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">6</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">7</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">8</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">9</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">10</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">11</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-primary-container text-on-primary-container font-bold">12</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">13</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">14</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">15</span>
+</div>
+</div>
+<!-- I Row -->
+<div class="flex items-center gap-1">
+<span class="w-6 font-label-caps text-label-caps font-bold text-on-surface-variant text-center">I</span>
+<div class="grid grid-cols-15 flex-1 gap-0.5">
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">16</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">17</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-primary-container text-on-primary-container font-bold">18</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">19</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">20</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">21</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">22</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">23</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-primary-container text-on-primary-container font-bold">24</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">25</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">26</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">27</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">28</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-primary-container text-on-primary-container font-bold">29</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">30</span>
+</div>
+</div>
+<!-- N Row -->
+<div class="flex items-center gap-1">
+<span class="w-6 font-label-caps text-label-caps font-bold text-on-surface-variant text-center">N</span>
+<div class="grid grid-cols-15 flex-1 gap-0.5">
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">31</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">32</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">33</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">34</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">35</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">36</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">37</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-primary-container text-on-primary-container font-bold">38</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">39</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">40</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">41</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-primary-container text-on-primary-container font-bold">42</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">43</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">44</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">45</span>
+</div>
+</div>
+<!-- G Row -->
+<div class="flex items-center gap-1">
+<span class="w-6 font-label-caps text-label-caps font-bold text-on-surface-variant text-center">G</span>
+<div class="grid grid-cols-15 flex-1 gap-0.5">
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">46</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">47</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">48</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">49</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">50</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-primary-container text-on-primary-container font-bold">51</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">52</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">53</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">54</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-primary text-on-primary font-bold shadow-sm">55</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">56</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">57</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">58</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">59</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">60</span>
+</div>
+</div>
+<!-- O Row -->
+<div class="flex items-center gap-1">
+<span class="w-6 font-label-caps text-label-caps font-bold text-on-surface-variant text-center">O</span>
+<div class="grid grid-cols-15 flex-1 gap-0.5">
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">61</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">62</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">63</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">64</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">65</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">66</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">67</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">68</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">69</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">70</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">71</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">72</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-primary-container text-on-primary-container font-bold">73</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">74</span>
+<span class="text-center py-0.5 rounded font-label-caps text-label-caps bg-surface-container text-on-surface-variant">75</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- MIDDLE COLUMN (6 cols): User Interactive ETIQAN Card -->
+<div class="lg:col-span-6 xl:col-span-6 flex flex-col gap-space-md">
+<!-- Card Container Surface -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-md flex flex-col">
+<!-- Registered Card Header -->
+<div class="flex flex-wrap items-center justify-between gap-space-xs pb-space-sm mb-space-sm border-b border-outline-variant/20"><div class="flex flex-col"><div class="flex items-center gap-space-2xs"><span class="font-headline-md text-headline-md text-on-surface font-bold">My Registered Card</span><span class="material-symbols-outlined text-tertiary text-base" title="Cryptographically Verified">verified</span></div><div class="flex items-center gap-2"><span class="font-body-sm text-body-sm text-on-surface-variant font-mono" id="cardSerialDisplay">#ETQ-CRD-77402-MY</span><span class="text-xs text-outline-variant">•</span><span class="font-label-caps text-label-caps text-tertiary font-semibold flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Verified</span></div></div><div class="flex items-center gap-space-xs flex-wrap"><button class="flex items-center gap-1.5 px-space-sm py-1.5 rounded-lg bg-primary text-on-primary hover:bg-on-primary-container font-label-md text-label-md font-bold shadow-sm transition-all hover:scale-[1.02] active:scale-[0.98]" id="rerollCardBtn" title="Generate new randomized Bingo card numbers" type="button"><span class="material-symbols-outlined text-base">shuffle</span><span class="">Randomize Card</span></button><div class="flex items-center gap-space-2xs px-space-xs py-1.5 rounded-lg bg-tertiary-fixed/30 text-on-tertiary-fixed"><span class="material-symbols-outlined text-sm">lock</span><span class="font-label-caps text-label-caps uppercase">Auto-Daubed Live</span></div></div></div>
+<div class="mb-space-sm rounded-lg bg-amber-50/70 border border-primary-fixed px-space-sm py-space-xs text-center font-body-sm text-on-surface-variant"><strong class="text-primary">6 columns (E - T - I - Q - A - N)</strong> × 5 rows = 30 ETIQAN question boxes</div>
+<!-- 6x5 ETIQAN Matrix Board -->
+<div class="w-full flex flex-col gap-space-xs overflow-x-auto pb-2">
+<!-- E-T-I-Q-A-N Columns Letter Header -->
+<div class="grid grid-cols-6 gap-0 min-w-[690px] lg:min-w-0 text-center bg-gradient-to-r from-primary-container via-primary-fixed-dim to-primary-container text-on-primary-container rounded-t-xl overflow-hidden select-none" id="bingoLettersHeader">
+<span class="py-2 font-display-hero-mobile text-display-hero-mobile font-black border-r border-primary/20">E</span>
+<span class="py-2 font-display-hero-mobile text-display-hero-mobile font-black border-r border-primary/20">T</span>
+<span class="py-2 font-display-hero-mobile text-display-hero-mobile font-black border-r border-primary/20">I</span>
+<span class="py-2 font-display-hero-mobile text-display-hero-mobile font-black border-r border-primary/20">Q</span>
+<span class="py-2 font-display-hero-mobile text-display-hero-mobile font-black border-r border-primary/20">A</span>
+<span class="py-2 font-display-hero-mobile text-display-hero-mobile font-black">N</span>
+</div>
+<!-- The 6x5 ETIQAN Grid -->
+<div class="grid grid-cols-6 gap-px min-w-[690px] lg:min-w-0 bg-outline-variant/40 rounded-b-xl overflow-hidden border border-outline-variant/40 select-none" id="bingoGridMatrix">
+<!-- ROW 1 -->
+<!-- Tile 12 (Daubed ✓) -->
+<div class="aspect-square rounded-lg bg-primary-fixed text-on-primary-fixed p-1.5 flex flex-col items-center justify-center relative shadow-sm hover:scale-[1.02] transition-transform">
+<div class="absolute top-1 right-1 w-4 h-4 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-xs">check</span>
+</div>
+<span class="font-headline-lg text-headline-lg font-extrabold">12</span>
+<span class="font-label-caps text-label-caps text-on-primary-fixed-variant">Daubed</span>
+</div>
+<!-- Tile 24 (Daubed ✓) -->
+<div class="aspect-square rounded-lg bg-primary-fixed text-on-primary-fixed p-1.5 flex flex-col items-center justify-center relative shadow-sm hover:scale-[1.02] transition-transform">
+<div class="absolute top-1 right-1 w-4 h-4 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-xs">check</span>
+</div>
+<span class="font-headline-lg text-headline-lg font-extrabold">24</span>
+<span class="font-label-caps text-label-caps text-on-primary-fixed-variant">Daubed</span>
+</div>
+<!-- Tile 33 -->
+<div class="aspect-square rounded-lg bg-surface-container-low text-on-surface p-1.5 flex flex-col items-center justify-center relative shadow-xs">
+<span class="font-headline-lg text-headline-lg font-semibold">33</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Health</span>
+</div>
+<!-- Tile 50 -->
+<div class="aspect-square rounded-lg bg-surface-container-low text-on-surface p-1.5 flex flex-col items-center justify-center relative shadow-xs">
+<span class="font-headline-lg text-headline-lg font-semibold">50</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Takaful</span>
+</div>
+<!-- Tile 72 -->
+<div class="aspect-square rounded-lg bg-surface-container-low text-on-surface p-1.5 flex flex-col items-center justify-center relative shadow-xs">
+<span class="font-headline-lg text-headline-lg font-semibold">72</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Drive</span>
+</div>
+<!-- ROW 2 -->
+<!-- Tile 05 -->
+<div class="aspect-square rounded-lg bg-surface-container-low text-on-surface p-1.5 flex flex-col items-center justify-center relative shadow-xs">
+<span class="font-headline-lg text-headline-lg font-semibold">05</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Steps</span>
+</div>
+<!-- Tile 18 (Daubed ✓) -->
+<div class="aspect-square rounded-lg bg-primary-fixed text-on-primary-fixed p-1.5 flex flex-col items-center justify-center relative shadow-sm hover:scale-[1.02] transition-transform">
+<div class="absolute top-1 right-1 w-4 h-4 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-xs">check</span>
+</div>
+<span class="font-headline-lg text-headline-lg font-extrabold">18</span>
+<span class="font-label-caps text-label-caps text-on-primary-fixed-variant">Daubed</span>
+</div>
+<!-- Tile 42 (Daubed ✓) -->
+<div class="aspect-square rounded-lg bg-primary-fixed text-on-primary-fixed p-1.5 flex flex-col items-center justify-center relative shadow-sm hover:scale-[1.02] transition-transform">
+<div class="absolute top-1 right-1 w-4 h-4 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-xs">check</span>
+</div>
+<span class="font-headline-lg text-headline-lg font-extrabold">42</span>
+<span class="font-label-caps text-label-caps text-on-primary-fixed-variant">Daubed</span>
+</div>
+<!-- Tile 61 -->
+<div class="aspect-square rounded-lg bg-surface-container-low text-on-surface p-1.5 flex flex-col items-center justify-center relative shadow-xs">
+<span class="font-headline-lg text-headline-lg font-semibold">61</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Quiz</span>
+</div>
+<!-- Tile 69 -->
+<div class="aspect-square rounded-lg bg-surface-container-low text-on-surface p-1.5 flex flex-col items-center justify-center relative shadow-xs">
+<span class="font-headline-lg text-headline-lg font-semibold">69</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Policy</span>
+</div>
+<!-- ROW 3 (NEAR WIN ROW: 4/5) -->
+<!-- Tile 09 -->
+<div class="aspect-square rounded-lg bg-surface-container-low text-on-surface p-1.5 flex flex-col items-center justify-center relative shadow-xs">
+<span class="font-headline-lg text-headline-lg font-semibold">09</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Eco</span>
+</div>
+<!-- Tile 29 (Daubed ✓) -->
+<div class="aspect-square rounded-lg bg-primary-fixed text-on-primary-fixed p-1.5 flex flex-col items-center justify-center relative shadow-sm hover:scale-[1.02] transition-transform">
+<div class="absolute top-1 right-1 w-4 h-4 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-xs">check</span>
+</div>
+<span class="font-headline-lg text-headline-lg font-extrabold">29</span>
+<span class="font-label-caps text-label-caps text-on-primary-fixed-variant">Daubed</span>
+</div>
+<!-- Tile FREE (Etiqa Shield ✓) Golden Center Cell -->
+<div class="aspect-square rounded-lg bg-gradient-to-br from-primary-fixed to-primary-container text-on-surface p-1 flex flex-col items-center justify-center relative shadow-sm">
+<div class="absolute top-1 right-1 w-4 h-4 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-xs">check</span>
+</div>
+<span class="material-symbols-outlined text-primary text-xl">verified_user</span>
+<span class="font-label-caps text-label-caps font-extrabold uppercase text-on-primary-container">FREE</span>
+</div>
+<!-- Tile 58 (Awaiting Call!) -->
+<div class="aspect-square rounded-lg bg-surface-container-highest text-on-surface p-1.5 flex flex-col items-center justify-center relative shadow-md">
+<div class="absolute top-1 right-1 flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</div>
+<span class="font-headline-lg text-headline-lg font-extrabold text-primary">58</span>
+<span class="font-label-caps text-label-caps text-primary font-bold">Needed!</span>
+</div>
+<!-- Tile 75 (Daubed ✓) -->
+<div class="aspect-square rounded-lg bg-primary-fixed text-on-primary-fixed p-1.5 flex flex-col items-center justify-center relative shadow-sm hover:scale-[1.02] transition-transform">
+<div class="absolute top-1 right-1 w-4 h-4 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-xs">check</span>
+</div>
+<span class="font-headline-lg text-headline-lg font-extrabold">75</span>
+<span class="font-label-caps text-label-caps text-on-primary-fixed-variant">Daubed</span>
+</div>
+<!-- ROW 4 -->
+<!-- Tile 14 -->
+<div class="aspect-square rounded-lg bg-surface-container-low text-on-surface p-1.5 flex flex-col items-center justify-center relative shadow-xs">
+<span class="font-headline-lg text-headline-lg font-semibold">14</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Car</span>
+</div>
+<!-- Tile 21 -->
+<div class="aspect-square rounded-lg bg-surface-container-low text-on-surface p-1.5 flex flex-col items-center justify-center relative shadow-xs">
+<span class="font-headline-lg text-headline-lg font-semibold">21</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Savings</span>
+</div>
+<!-- Tile 40 -->
+<div class="aspect-square rounded-lg bg-surface-container-low text-on-surface p-1.5 flex flex-col items-center justify-center relative shadow-xs">
+<span class="font-headline-lg text-headline-lg font-semibold">40</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Family</span>
+</div>
+<!-- Tile 52 -->
+<div class="aspect-square rounded-lg bg-surface-container-low text-on-surface p-1.5 flex flex-col items-center justify-center relative shadow-xs">
+<span class="font-headline-lg text-headline-lg font-semibold">52</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Medical</span>
+</div>
+<!-- Tile 66 -->
+<div class="aspect-square rounded-lg bg-surface-container-low text-on-surface p-1.5 flex flex-col items-center justify-center relative shadow-xs">
+<span class="font-headline-lg text-headline-lg font-semibold">66</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Retire</span>
+</div>
+<!-- ROW 5 -->
+<!-- Tile 02 -->
+<div class="aspect-square rounded-lg bg-surface-container-low text-on-surface p-1.5 flex flex-col items-center justify-center relative shadow-xs">
+<span class="font-headline-lg text-headline-lg font-semibold">02</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Travel</span>
+</div>
+<!-- Tile 27 -->
+<div class="aspect-square rounded-lg bg-surface-container-low text-on-surface p-1.5 flex flex-col items-center justify-center relative shadow-xs">
+<span class="font-headline-lg text-headline-lg font-semibold">27</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Home</span>
+</div>
+<!-- Tile 45 -->
+<div class="aspect-square rounded-lg bg-surface-container-low text-on-surface p-1.5 flex flex-col items-center justify-center relative shadow-xs">
+<span class="font-headline-lg text-headline-lg font-semibold">45</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Audit</span>
+</div>
+<!-- Tile 57 -->
+<div class="aspect-square rounded-lg bg-surface-container-low text-on-surface p-1.5 flex flex-col items-center justify-center relative shadow-xs">
+<span class="font-headline-lg text-headline-lg font-semibold">57</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Life</span>
+</div>
+<!-- Tile 70 -->
+<div class="aspect-square rounded-lg bg-surface-container-low text-on-surface p-1.5 flex flex-col items-center justify-center relative shadow-xs">
+<span class="font-headline-lg text-headline-lg font-semibold">70</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Review</span>
+</div>
+</div>
+</div>
+<!-- Pattern Progress Bar Indicator -->
+<div class="mt-space-md p-space-sm bg-surface-container-low rounded-lg flex flex-col gap-1">
+<div class="flex items-center justify-between font-label-md text-label-md text-on-surface font-semibold">
+<span id="patternProgressLabel">Pattern Progress: Loading your card...</span>
+<span class="text-primary font-bold" id="patternProgressStatus">Card loading</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2.5 overflow-hidden">
+<div class="bg-gradient-to-r from-primary to-tertiary h-2.5 rounded-full transition-all duration-500" id="patternProgressBar" style="width: 80%"></div>
+</div>
+</div>
+<!-- Dynamic Game State Info Box -->
+<div class="mt-space-sm p-space-sm rounded-lg bg-primary-fixed/20 flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps uppercase text-primary font-bold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+              Live Game State
+            </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant" id="gameStateLiveStatus">Waiting for official draw</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface font-semibold" id="gameStateDescription">
+            Your pattern progress will update when the official draw begins.
+          </p>
+</div>
+<!-- Claim Bingo Verification CTA -->
+<button class="mt-space-md w-full py-space-sm px-space-md rounded-lg bg-on-surface text-surface flex items-center justify-center gap-space-xs font-label-lg text-label-lg font-bold shadow-md hover:opacity-90 active:scale-[0.99] transition-all" id="claimBingoBtn">
+<span class="material-symbols-outlined text-primary-container">verified_user</span>
+<span class="">Lock Your ETIQAN Card</span>
+</button>
+</div>
+</div>
+<!-- RIGHT COLUMN (3 cols): Live Tournament Telemetry & Support -->
+<div class="lg:col-span-3 xl:col-span-3 flex flex-col gap-space-md">
+<!-- Potential Winners Radar -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col" data-winners-radar>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Winners Radar</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant font-label-caps text-label-caps">Live</span>
+</div>
+<div class="flex items-center gap-space-2xs p-space-xs rounded-lg bg-secondary-container text-on-secondary-container mb-space-sm">
+<span class="material-symbols-outlined text-base">radar</span>
+<span class="font-body-sm text-body-sm font-semibold" data-radar-summary>Loading radar...</span>
+</div>
+<div class="flex flex-col gap-space-xs" data-radar-list>
+<div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm pb-1">
+<span class="flex items-center gap-1 font-mono text-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> MY-**882
+            </span>
+<span class="font-label-caps text-label-caps text-primary">Needs B-04</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm pb-1">
+<span class="flex items-center gap-1 font-mono text-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> MY-**402 (You)
+            </span>
+<span class="font-label-caps text-label-caps text-primary">Needs G-58</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm pb-1">
+<span class="flex items-center gap-1 font-mono text-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> MY-**917
+            </span>
+<span class="font-label-caps text-label-caps text-primary">Needs O-63</span>
+</div>
+</div>
+</div>
+<!-- Previous Winner Preview -->
+<section aria-label="Previous winner" class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Previous Winner</span>
+<span class="material-symbols-outlined text-base text-tertiary">emoji_events</span>
+</div>
+<div class="flex items-center gap-space-xs p-space-xs bg-surface-container-low rounded-lg">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-caps text-label-caps font-bold" id="previousWinnerInitials">--</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold" id="previousWinnerName">Loading...</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant" id="previousWinnerDetails">Loading previous winner data...</span>
+</div>
+</div>
+</section>
+<!-- Weekly Prize Allocation -->
+<section aria-label="Weekly Prize Allocation" class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Weekly Prize Allocation</span>
+<span class="material-symbols-outlined text-base text-tertiary">military_tech</span>
+</div>
+<div class="flex items-center gap-space-xs p-space-xs bg-primary-fixed/40 rounded-lg">
+<div class="w-7 h-7 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[17px]">workspace_premium</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Ultimate Grand Prize Winner</span>
+<span class="font-body-sm text-body-sm text-primary font-semibold">RM100 Voucher</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-2xs">
+<div class="flex items-center gap-space-2xs p-space-xs bg-surface-container-low rounded-lg">
+<div class="w-6 h-6 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center font-label-caps text-label-caps font-bold">1</div>
+<span class="font-label-md text-label-md text-on-surface font-semibold">RM50 Etiqa Smile Voucher</span>
+</div>
+<div class="flex items-center gap-space-2xs p-space-xs bg-surface-container-low rounded-lg">
+<div class="w-6 h-6 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center font-label-caps text-label-caps font-bold">2</div>
+<span class="font-label-md text-label-md text-on-surface font-semibold">RM50 Etiqa Smile Voucher</span>
+</div>
+<div class="flex items-center gap-space-2xs p-space-xs bg-surface-container-low rounded-lg">
+<div class="w-6 h-6 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center font-label-caps text-label-caps font-bold">3</div>
+<span class="font-label-md text-label-md text-on-surface font-semibold">RM50 Etiqa Smile Voucher</span>
+</div>
+<div class="flex items-center gap-space-2xs p-space-xs bg-surface-container-low rounded-lg">
+<div class="w-6 h-6 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center font-label-caps text-label-caps font-bold">4</div>
+<span class="font-label-md text-label-md text-on-surface font-semibold">RM50 Etiqa Smile Voucher</span>
+</div>
+</div>
+</section>
+<!-- Customer Support Hotline & Rules Shortcut -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-xs">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Participant Care &amp; Rules</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Need clarification regarding automatic cell validation or Takaful gift disbursement?</p>
+<div class="flex items-center gap-space-2xs text-on-surface pt-1">
+<span class="material-symbols-outlined text-primary text-base">support_agent</span>
+<span class="font-label-md text-label-md font-bold">1-300-13-8888 (Toll Free)</span>
+</div>
+<button class="mt-space-xs w-full py-1.5 px-space-xs rounded bg-surface-container text-on-surface text-center font-label-md text-label-md hover:bg-surface-container-high transition-colors">
+          View Official Round 12 Rules
+        </button>
+</div>
+</div>
+</div>
+<!-- Bingo Winner Congratulations Popup -->
+<div class="fixed inset-0 z-50 hidden items-center justify-center bg-on-surface/60 p-4 backdrop-blur-sm" id="bingoWinnerPopup" role="dialog" aria-modal="true" aria-labelledby="bingoWinnerTitle">
+<div class="w-full max-w-md rounded-2xl bg-surface-container-lowest p-space-lg text-center shadow-2xl">
+<div class="mx-auto mb-space-sm flex h-16 w-16 items-center justify-center rounded-full bg-primary-container text-on-primary-container">
+<span class="material-symbols-outlined text-[36px]">emoji_events</span>
+</div>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-tertiary">ETIQAN Verified</span>
+<h2 class="mt-1 font-headline-xl text-headline-xl font-extrabold text-on-surface" id="bingoWinnerTitle">Congratulations!</h2>
+<p class="mt-space-xs font-body-md text-body-md text-on-surface-variant" id="bingoPrizeMessage">You completed a winning ETIQAN row or column. Your reward is ready to be claimed.</p>
+<div class="mt-space-md rounded-xl bg-primary-fixed/40 p-space-sm">
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-primary">Grand Hibah Prize Allocation</span>
+<div class="mt-1 font-headline-lg text-headline-lg font-extrabold text-on-surface">RM 10,000 CASH</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Instant Maybank DuitNow or Takaful top-up</span>
+</div>
+<button class="mt-space-lg w-full rounded-xl bg-tertiary px-space-md py-space-sm font-label-lg text-label-lg font-bold text-on-tertiary shadow-md transition-all hover:bg-on-tertiary-container" id="claimWinnerRewardBtn" type="button">
+Claim Winner Reward
+</button>
+<button class="mt-space-xs w-full rounded-xl bg-surface-container px-space-md py-space-sm font-label-md text-label-md text-on-surface transition-colors hover:bg-surface-container-high" id="closeBingoPopupBtn" type="button">
+Close
+</button>
+</div>
+</div>
+<!-- Ultimate Grand Winner Popup -->
+<div class="fixed inset-0 z-50 hidden items-center justify-center bg-on-secondary-fixed/80 p-space-md backdrop-blur-md" id="ultimateWinnerPopup" role="dialog" aria-modal="true" aria-labelledby="ultimateWinnerTitle">
+<div class="relative w-full max-w-xl overflow-hidden rounded-xl border-2 border-primary-container bg-surface-container-lowest shadow-lg">
+<div class="relative flex flex-col items-center justify-center bg-gradient-to-br from-primary via-primary-container to-tertiary px-space-lg pb-space-md pt-space-lg text-center text-on-primary">
+<button class="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-surface-container-lowest/20 text-on-primary transition-colors hover:bg-surface-container-lowest/40" id="closeUltimateWinnerBtn" title="Close modal" type="button"><span class="material-symbols-outlined text-lg">close</span></button>
+<span class="mb-space-xs inline-flex items-center rounded-full bg-surface-container-lowest px-space-sm py-1 font-label-caps text-label-caps font-extrabold uppercase tracking-widest text-primary">Ultimate Grand Winner</span>
+<div class="my-space-xs flex h-20 w-20 items-center justify-center rounded-full bg-surface-container-lowest text-primary shadow-lg ring-2 ring-primary-fixed"><span class="material-symbols-outlined text-[40px]">hotel_class</span></div>
+<h2 class="font-headline-xl text-headline-xl font-extrabold" id="ultimateWinnerTitle">FULL ETIQAN CARD!</h2>
+<p class="font-body-md text-body-md text-on-primary">Every box on your ETIQAN card has been completed.</p>
+</div>
+<div class="space-y-4 p-space-lg text-center">
+<div class="rounded-xl border border-primary-container/40 bg-primary-fixed/40 p-space-md"><span class="font-label-caps text-label-caps font-bold uppercase tracking-wider text-primary">Ultimate Prize</span><div class="mt-1 font-display-hero-mobile text-display-hero-mobile font-extrabold text-on-surface">RM100 Voucher</div><span class="font-body-sm text-body-sm text-on-surface-variant">Ultimate winner selected from the full-board finishers</span></div>
+<button class="w-full rounded-xl bg-tertiary px-space-md py-space-sm font-label-lg text-label-lg font-bold text-on-tertiary shadow-md transition-all hover:bg-on-tertiary-container" id="claimUltimateWinnerBtn" type="button">Claim Ultimate Reward</button>
+</div>
+</div>
+</div>
+<!-- Client-side Micro-Interaction Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const gameMode = new URLSearchParams(window.location.search).get('mode') === 'spectate' ? 'spectate' : 'play';
+      const nextDrawLabel = document.querySelector('[id="nextDrawCountdownText"]')?.parentElement;
+      const nextDrawTextNode = nextDrawLabel && Array.from(nextDrawLabel.childNodes).find((node) => node.nodeType === Node.TEXT_NODE);
+      if (nextDrawLabel) nextDrawLabel.textContent = 'Game Always On';
+      const claimBtn = document.getElementById('claimBingoBtn');
+      const gameStateDescription = document.getElementById('gameStateDescription');
+      const rerollBtn = document.getElementById('rerollCardBtn');
+      const gridMatrix = document.getElementById('bingoGridMatrix');
+
+      const cardTitle = document.querySelector('#cardSerialDisplay')?.closest('.flex.flex-col')?.querySelector('.font-headline-md.font-bold');
+      if (cardTitle) cardTitle.textContent = 'My ETIQAN Card';
+      const headerTitle = document.querySelector('header .font-headline-md');
+      if (headerTitle) headerTitle.textContent = 'Etiqa ETIQAN Challenge';
+      if (rerollBtn) {
+        rerollBtn.title = 'Generate a new randomized ETIQAN card';
+        const rerollLabel = rerollBtn.querySelector('span:last-child');
+        if (rerollLabel) rerollLabel.textContent = 'Randomize ETIQAN Card';
+      }
+
+      if (gameMode === 'spectate' && gameStateDescription) {
+        gameStateDescription.innerHTML = 'Spectator mode is active. You are watching the live draw without interacting with the card.';
+      }
+
+      if (gameMode === 'spectate' && rerollBtn) {
+        rerollBtn.disabled = true;
+        rerollBtn.title = 'Spectator mode: card controls are locked';
+        rerollBtn.style.opacity = '0.6';
+        rerollBtn.style.cursor = 'not-allowed';
+      }
+
+      if (gameMode === 'spectate' && claimBtn) {
+        claimBtn.disabled = true;
+        claimBtn.style.opacity = '0.6';
+        claimBtn.style.cursor = 'not-allowed';
+        claimBtn.innerHTML = '<span class="material-symbols-outlined text-primary-container">visibility</span><span class="">Spectator Mode</span>';
+      }
+
+      if (gameMode === 'spectate' && gridMatrix) {
+        gridMatrix.style.pointerEvents = 'none';
+        gridMatrix.style.opacity = '0.82';
+      }
+
+      const bingoInviteModal = document.getElementById('bingoInviteModal');
+      const startBingoBtn = document.getElementById('startBingoBtn');
+      const laterBingoBtn = document.getElementById('laterBingoBtn');
+      const liveDrawConfirmModal = document.getElementById('liveDrawConfirmModal');
+      const liveDrawConfirmContent = document.getElementById('liveDrawConfirmContent');
+
+      const openInvite = () => {
+        if (bingoInviteModal) {
+          bingoInviteModal.classList.remove('hidden');
+          bingoInviteModal.classList.add('flex');
+        }
+      };
+
+      const closeInvite = () => {
+        if (bingoInviteModal) {
+          bingoInviteModal.classList.add('hidden');
+          bingoInviteModal.classList.remove('flex');
+        }
+      };
+
+      const openLiveDrawConfirm = () => {
+        if (liveDrawConfirmModal && liveDrawConfirmContent) {
+          liveDrawConfirmContent.innerHTML = 'Do you want to play the ETIQAN challenge?';
+          liveDrawConfirmModal.classList.remove('hidden');
+          liveDrawConfirmModal.classList.add('flex');
+        }
+      };
+
+      const closeLiveDrawConfirm = () => {
+        if (liveDrawConfirmModal) {
+          liveDrawConfirmModal.classList.add('hidden');
+          liveDrawConfirmModal.classList.remove('flex');
+        }
+      };
+
+      document.querySelectorAll('[data-path="my-bingo-card"]').forEach((link) => {
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
+          openInvite();
+        });
+      });
+
+      document.querySelectorAll('[data-path="live-weekly-draw"]').forEach((link) => {
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
+          openLiveDrawConfirm();
+        });
+      });
+
+      if (startBingoBtn) {
+        startBingoBtn.addEventListener('click', () => {
+          closeInvite();
+          const bingoGrid = document.getElementById('bingoGridMatrix');
+          if (bingoGrid) {
+            bingoGrid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        });
+      }
+
+      if (laterBingoBtn) {
+        laterBingoBtn.addEventListener('click', closeInvite);
+      }
+
+      if (liveDrawConfirmModal) {
+        liveDrawConfirmModal.addEventListener('click', (event) => {
+          if (event.target === liveDrawConfirmModal) closeLiveDrawConfirm();
+        });
+      }
+
+      if (bingoInviteModal) {
+        bingoInviteModal.addEventListener('click', (event) => {
+          if (event.target === bingoInviteModal) closeInvite();
+        });
+      }
+
+      let cardLocked = false;
+      let cardLocking = false;
+      window.bingoCardLocked = false;
+      window.bingoCardLockInProgress = false;
+
+      const lockCard = async ({ automatic = false } = {}) => {
+        if (cardLocked || cardLocking) return false;
+
+        if (!automatic && window.hasBingo && window.hasBingo()) {
+          if (window.showBingoWinnerPopup) window.showBingoWinnerPopup();
+          return false;
+        }
+
+        cardLocking = true;
+        window.bingoCardLockInProgress = true;
+
+        if (claimBtn) {
+          claimBtn.innerHTML = `<span class="material-symbols-outlined animate-spin text-sm">lock</span> ${automatic ? 'Auto-locking Your ETIQAN Card...' : 'Locking Your ETIQAN Card...'}`;
+          claimBtn.classList.remove('bg-on-surface');
+          claimBtn.classList.add('bg-secondary');
+          claimBtn.disabled = true;
+          claimBtn.style.opacity = '0.9';
+          claimBtn.style.cursor = 'not-allowed';
+        }
+
+        if (rerollBtn) {
+          rerollBtn.disabled = true;
+          rerollBtn.title = 'Card locked: randomization is disabled';
+          rerollBtn.style.opacity = '0.6';
+          rerollBtn.style.cursor = 'not-allowed';
+          rerollBtn.innerHTML = '<span class="material-symbols-outlined text-base">lock</span><span>Card Locked</span>';
+        }
+
+        if (gridMatrix) {
+          gridMatrix.style.pointerEvents = 'none';
+          gridMatrix.style.opacity = '0.92';
+        }
+
+        try {
+          const saved = window.syncCurrentBingoCard ? await window.syncCurrentBingoCard() : false;
+          if (!saved) throw new Error('The ETIQAN card could not be saved.');
+          window.dispatchEvent(new CustomEvent('bingo-card-locked', { detail: { automatic } }));
+        } catch (error) {
+          console.error('Unable to lock Bingo card:', error);
+          cardLocking = false;
+          window.bingoCardLockInProgress = false;
+          if (claimBtn) {
+            claimBtn.disabled = false;
+            claimBtn.title = error?.message || 'Unable to save your ETIQAN card';
+            claimBtn.innerHTML = '<span class="material-symbols-outlined text-primary-container">error</span> Try Locking Again';
+          }
+          if (gridMatrix) {
+            gridMatrix.style.pointerEvents = '';
+            gridMatrix.style.opacity = '';
+          }
+          return false;
+        }
+
+        setTimeout(() => {
+          cardLocked = true;
+          cardLocking = false;
+          window.bingoCardLocked = true;
+          window.bingoCardLockInProgress = false;
+          if (claimBtn) {
+            claimBtn.innerHTML = `<span class="material-symbols-outlined text-primary-container">lock</span> ${automatic ? 'Card Auto-Locked' : 'Card Locked'}`;
+            claimBtn.classList.remove('bg-secondary');
+            claimBtn.classList.add('bg-on-surface');
+            claimBtn.disabled = true;
+            claimBtn.style.opacity = '1';
+          }
+        }, 1200);
+
+        return true;
+      };
+
+      window.lockBingoCard = lockCard;
+      if (claimBtn) claimBtn.addEventListener('click', () => lockCard());
+    });
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest shadow-[0_-1px_8px_rgba(0,0,0,0.03)] mt-space-2xl"><div class="max-w-grid-max-width mx-auto px-gutter-desktop py-space-xl"><div class="grid grid-cols-1 md:grid-cols-4 gap-space-xl pb-space-lg"><div class="flex flex-col gap-space-xs"><div class="flex items-center gap-space-xs"><span class="font-headline-md text-headline-md text-on-surface">Etiqa</span><span class="font-label-caps text-label-caps px-space-2xs py-0.5 rounded bg-primary-container text-on-primary-container font-bold">Official</span></div><p class="font-body-sm text-body-sm text-on-surface-variant">Etiqa Insurance Berhad &amp; Etiqa Takaful Berhad. Empowering Malaysians through prudent protection, wellness challenges, and transparent community rewards.</p></div><div class="flex flex-col gap-space-xs"><span class="font-label-lg text-label-lg text-on-surface font-bold">Customer Care &amp; Support</span><div class="flex items-center gap-space-2xs text-on-surface-variant"><span class="material-symbols-outlined text-base text-primary">call</span><span class="font-body-md text-body-md font-semibold text-on-surface">1-300-13-8888</span></div><p class="font-body-sm text-body-sm text-on-surface-variant">Monday - Friday: 8:30 AM - 5:30 PM</p><p class="font-body-sm text-body-sm text-on-surface-variant">Email: info@etiqa.com.my</p></div><div class="flex flex-col gap-space-xs"><span class="font-label-lg text-label-lg text-on-surface font-bold">Regulatory Assurance</span><div class="flex items-start gap-space-2xs"><span class="material-symbols-outlined text-tertiary text-base mt-0.5">shield</span><p class="font-body-sm text-body-sm text-on-surface-variant">Licensed by Bank Negara Malaysia (BNM) under the Financial Services Act 2013 &amp; Islamic Financial Services Act 2013.</p></div><div class="flex items-center gap-space-2xs px-space-xs py-1 rounded bg-surface-container-low text-on-surface-variant"><span class="font-label-caps text-label-caps font-bold">PIDM Member</span><span class="font-body-sm text-body-sm">Protected up to RM500,000</span></div></div><div class="flex flex-col gap-space-xs"><span class="font-label-lg text-label-lg text-on-surface font-bold">Governance &amp; Terms</span><div class="flex flex-col gap-space-2xs font-body-sm text-body-sm text-on-surface-variant"><a class="hover:text-primary transition-colors" href="#">Campaign Terms &amp; Conditions</a><a class="hover:text-primary transition-colors" href="#">Takaful Underwriting Policy</a><a class="hover:text-primary transition-colors" href="#">Privacy Notice &amp; PDPA Compliance</a><a class="hover:text-primary transition-colors" href="#">Security Guidelines &amp; Fraud Alert</a></div></div></div><div class="flex flex-col sm:flex-row items-center justify-between pt-space-md gap-space-sm bg-surface-container-lowest"><p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 Etiqa Insurance &amp; Takaful. All rights reserved. Registered under the laws of Malaysia.</p><div class="flex items-center gap-space-md font-body-sm text-body-sm text-on-surface-variant"><span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-tertiary"></span> Systems Fully Operational</span><span class="">v2.4.0 Production</span></div></div></div></footer>
+<script>
+(function() {
+  // ETIQAN is always available. There is no scheduled draw countdown.
+  const nextDrawCountdownText = document.getElementById('nextDrawCountdownText');
+  if (nextDrawCountdownText) nextDrawCountdownText.textContent = 'Always On';
+
+  const callerTimer = document.getElementById('callerCountdownTimer');
+  const topTimerSecText = document.getElementById('topTimerSecText');
+  const topTimerSubText = document.getElementById('topTimerSubText');
+  const topTimerCircle = document.getElementById('topTimerCircle');
+  const currentBallLetter = document.getElementById('currentBallLetter');
+  const currentBallNumber = document.getElementById('currentBallNumber');
+  const currentBallLabel = document.getElementById('currentBallLabel');
+  const liveBallDisplay = document.getElementById('liveBallDisplay');
+  const gridMatrix = document.getElementById('bingoGridMatrix');
+  const cardSerial = document.getElementById('cardSerialDisplay');
+  const patternProgressLabel = document.getElementById('patternProgressLabel');
+  const patternProgressStatus = document.getElementById('patternProgressStatus');
+  const patternProgressBar = document.getElementById('patternProgressBar');
+  const gameStateDesc = document.getElementById('gameStateDescription');
+
+  function getMalaysiaDateParts(date = new Date()) {
+    const parts = new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'Asia/Kuala_Lumpur',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      weekday: 'short',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hourCycle: 'h23'
+    }).formatToParts(date).reduce((values, part) => {
+      values[part.type] = part.value;
+      return values;
+    }, {});
+
+    return {
+      year: Number(parts.year),
+      month: Number(parts.month),
+      day: Number(parts.day),
+      hour: Number(parts.hour),
+      minute: Number(parts.minute),
+      second: Number(parts.second),
+      weekday: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(parts.weekday)
+    };
+  }
+
+  function getCurrentSundayStart() {
+    const malaysiaNow = getMalaysiaDateParts();
+    const currentDate = new Date(Date.UTC(
+      malaysiaNow.year,
+      malaysiaNow.month - 1,
+      malaysiaNow.day,
+      malaysiaNow.hour,
+      malaysiaNow.minute,
+      malaysiaNow.second
+    ));
+    const daysUntilSunday = (7 - malaysiaNow.weekday) % 7;
+    currentDate.setUTCDate(currentDate.getUTCDate() + daysUntilSunday);
+    currentDate.setUTCHours(15, 25, 0, 0);
+    return currentDate;
+  }
+
+  function isDrawOpen() {
+    return Date.now() >= getCurrentSundayStart().getTime();
+  }
+
+  function showDrawWaitingState() {
+    if (callerTimer) callerTimer.textContent = 'WAIT';
+    if (topTimerSecText) topTimerSecText.textContent = '--';
+    if (topTimerSubText) topTimerSubText.textContent = 'Next draw: Sunday 11:25 PM MYT';
+    if (topTimerCircle) topTimerCircle.setAttribute('stroke-dasharray', '0, 100');
+    if (currentBallLetter) currentBallLetter.textContent = 'Game Paused';
+    if (currentBallNumber) currentBallNumber.textContent = '--';
+    if (currentBallLabel) currentBallLabel.textContent = 'Waiting for Sunday 11:25 PM MYT';
+    if (gameStateDesc) gameStateDesc.textContent = 'The game will begin when the official Firebase draw is active.';
+  }
+  const bingoPopup = document.getElementById('bingoWinnerPopup');
+  const ultimateWinnerPopup = document.getElementById('ultimateWinnerPopup');
+  const closeBingoPopupBtn = document.getElementById('closeBingoPopupBtn');
+  const claimWinnerRewardBtn = document.getElementById('claimWinnerRewardBtn');
+  const closeUltimateWinnerBtn = document.getElementById('closeUltimateWinnerBtn');
+  const claimUltimateWinnerBtn = document.getElementById('claimUltimateWinnerBtn');
+  const bingoPrizeMessage = document.getElementById('bingoPrizeMessage');
+  let currentDrawnNumber = null;
+  let drawQueue = [];
+  let drawFinished = false;
+  let bingoShown = false;
+  let ultimateWinnerShown = false;
+  const winnerRecordRequested = new Set();
+
+  function createDrawQueue() {
+    drawQueue = Array.from({ length: 75 }, (_, index) => index + 1);
+    for (let index = drawQueue.length - 1; index > 0; index--) {
+      const swapIndex = Math.floor(Math.random() * (index + 1));
+      [drawQueue[index], drawQueue[swapIndex]] = [drawQueue[swapIndex], drawQueue[index]];
+    }
+  }
+
+  function showNewBall() {
+    const number = drawQueue.shift();
+    if (number === undefined) {
+      drawFinished = true;
+      if (topTimerSubText) topTimerSubText.textContent = 'All 75 balls drawn';
+      if (callerTimer) callerTimer.textContent = 'DONE';
+      if (topTimerSecText) topTimerSecText.textContent = '--';
+      if (topTimerCircle) topTimerCircle.setAttribute('stroke-dasharray', '0, 100');
+      return false;
+    }
+    const letter = getBallLetter(number);
+    currentDrawnNumber = number;
+
+    if (currentBallLetter) currentBallLetter.textContent = 'Letter ' + letter;
+    if (currentBallNumber) currentBallNumber.textContent = number;
+    if (currentBallLabel) currentBallLabel.textContent = letter + '-' + number + ' • ' + letter + ' ' + getBallName(number);
+
+    if (liveBallDisplay) {
+      liveBallDisplay.animate(
+        [
+          { transform: 'scale(1)', opacity: '1' },
+          { transform: 'scale(1.08)', opacity: '0.9' },
+          { transform: 'scale(1)', opacity: '1' }
+        ],
+        { duration: 600, easing: 'ease-out' }
+      );
+    }
+
+    autoMarkMatchingNumbers();
+    if (drawQueue.length === 0) {
+      drawFinished = true;
+      if (topTimerSubText) topTimerSubText.textContent = 'All 75 balls drawn';
+      if (callerTimer) callerTimer.textContent = 'DONE';
+      if (topTimerSecText) topTimerSecText.textContent = '--';
+      if (topTimerCircle) topTimerCircle.setAttribute('stroke-dasharray', '0, 100');
+    }
+    return true;
+  }
+
+  function getBallLetter(number) {
+    if (number >= 1 && number <= 15) return 'B';
+    if (number <= 30) return 'I';
+    if (number <= 45) return 'N';
+    if (number <= 60) return 'G';
+    return 'O';
+  }
+
+  function getBallName(number) {
+    const labels = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen', 'Twenty', 'Twenty-One', 'Twenty-Two', 'Twenty-Three', 'Twenty-Four', 'Twenty-Five', 'Twenty-Six', 'Twenty-Seven', 'Twenty-Eight', 'Twenty-Nine', 'Thirty', 'Thirty-One', 'Thirty-Two', 'Thirty-Three', 'Thirty-Four', 'Thirty-Five', 'Thirty-Six', 'Thirty-Seven', 'Thirty-Eight', 'Thirty-Nine', 'Forty', 'Forty-One', 'Forty-Two', 'Forty-Three', 'Forty-Four', 'Forty-Five', 'Forty-Six', 'Forty-Seven', 'Forty-Eight', 'Forty-Nine', 'Fifty', 'Fifty-One', 'Fifty-Two', 'Fifty-Three', 'Fifty-Four', 'Fifty-Five', 'Fifty-Six', 'Fifty-Seven', 'Fifty-Eight', 'Fifty-Nine', 'Sixty', 'Sixty-One', 'Sixty-Two', 'Sixty-Three', 'Sixty-Four', 'Sixty-Five', 'Sixty-Six', 'Sixty-Seven', 'Sixty-Eight', 'Sixty-Nine', 'Seventy', 'Seventy-One', 'Seventy-Two', 'Seventy-Three', 'Seventy-Four', 'Seventy-Five'];
+    return labels[number] || String(number);
+  }
+
+  function applyBingoCellStyles() {
+    if (!gridMatrix) return;
+
+    const cells = gridMatrix.querySelectorAll('.bingo-cell');
+    cells.forEach((cell) => {
+      const isFree = cell.dataset.isFree === 'true';
+      const isTicked = cell.dataset.tick === 'true';
+
+      if (isFree) {
+        cell.style.background = 'linear-gradient(135deg, #ffddb8, #f7c873)';
+        cell.style.color = '#2a1700';
+        cell.style.outline = '2px solid #d69e2e';
+        cell.style.borderRadius = '0.5rem';
+        cell.style.boxShadow = '0 0 0 3px rgba(246, 193, 88, 0.2)';
+        return;
+      }
+
+      if (isTicked) {
+        cell.style.background = 'radial-gradient(circle at center, #f6d365 0 38%, #dfeaff 39% 100%)';
+        cell.style.color = '#2a1700';
+        cell.style.outline = '2px solid #d99b00';
+        cell.style.borderRadius = '0.5rem';
+        cell.style.boxShadow = '0 0 0 2px rgba(217, 155, 0, 0.18)';
+      } else {
+        cell.style.background = '#f8fafc';
+        cell.style.color = '#0b1c30';
+        cell.style.outline = '1px solid rgba(134, 157, 214, 0.35)';
+        cell.style.borderRadius = '0.5rem';
+        cell.style.boxShadow = 'none';
+      }
+    });
+  }
+
+  function renderQuestionSlot(cell) {
+    if (!cell) return;
+
+    const slot = cell.querySelector('[data-question-slot]');
+    if (!slot) return;
+
+    const question = String(cell.dataset.question || '').trim();
+    slot.textContent = question;
+    slot.setAttribute('aria-label', question || 'Question pending');
+  }
+
+  function renderQuestionSlots() {
+    if (!gridMatrix) return;
+    gridMatrix.querySelectorAll('.bingo-cell').forEach(renderQuestionSlot);
+  }
+
+  function assignBingoCellMeta() {
+    if (!gridMatrix) return;
+
+    const cells = gridMatrix.querySelectorAll('.bingo-cell, .aspect-square');
+    cells.forEach((cell) => {
+      if (cell.dataset.number) {
+        cell.classList.add('bingo-cell');
+      }
+
+      if (cell.dataset.isFree === 'true') {
+        cell.dataset.isFree = 'true';
+      }
+    });
+
+    applyBingoCellStyles();
+  }
+
+  function updateCurrentMatchGlow() {
+    if (!gridMatrix) return;
+
+    const cells = gridMatrix.querySelectorAll('.bingo-cell');
+    cells.forEach((cell) => {
+      const isFree = cell.dataset.isFree === 'true';
+      const cellNumber = Number(cell.dataset.number);
+      const isMatch = !isFree && currentDrawnNumber !== null && !Number.isNaN(cellNumber) && cellNumber === currentDrawnNumber;
+
+      if (isMatch) {
+        cell.style.outline = '3px solid #f59e0b';
+        cell.style.boxShadow = '0 0 0 5px rgba(245, 158, 11, 0.18)';
+        cell.style.transform = 'scale(1.02)';
+        cell.setAttribute('title', 'Automatically marked from the live draw');
+      } else {
+        cell.style.transform = '';
+        cell.removeAttribute('title');
+      }
+    });
+  }
+
+  function showBingoWinnerPopup(isUltimateWinner = false) {
+    if ((!isUltimateWinner && (!bingoPopup || bingoShown)) || (isUltimateWinner && (!ultimateWinnerPopup || ultimateWinnerShown))) return;
+
+    const winnerType = isUltimateWinner ? 'grand-prize-winner' : 'bingo-winner';
+    if (!winnerRecordRequested.has(winnerType) && window.recordWinner) {
+      winnerRecordRequested.add(winnerType);
+      const cardNumbers = Array.from(gridMatrix?.querySelectorAll('.bingo-cell') || [])
+        .map((cell) => cell.dataset.number || '');
+      window.recordWinner({
+        winnerType,
+        currentBall: currentDrawnNumber,
+        cardNumbers
+      });
+    }
+
+    if (isUltimateWinner) {
+      ultimateWinnerShown = true;
+      ultimateWinnerPopup.classList.remove('hidden');
+      ultimateWinnerPopup.classList.add('flex');
+    } else {
+      bingoShown = true;
+      bingoPopup.classList.remove('hidden');
+      bingoPopup.classList.add('flex');
+    }
+  }
+
+  window.showBingoWinnerPopup = showBingoWinnerPopup;
+
+  function hideBingoPopup() {
+    if (bingoPopup) {
+      bingoPopup.classList.add('hidden');
+      bingoPopup.classList.remove('flex');
+    }
+  }
+
+  function hasBingo() {
+    return checkForBingo();
+  }
+
+  window.hasBingo = hasBingo;
+
+  function hasUltimateBingo() {
+    if (!gridMatrix) return false;
+    return Array.from(gridMatrix.querySelectorAll('.bingo-cell'))
+      .every((cell) => cell.dataset.isFree === 'true' || cell.dataset.tick === 'true');
+  }
+
+  function checkForBingo() {
+    if (!gridMatrix) return false;
+
+    const cells = Array.from(gridMatrix.querySelectorAll('.bingo-cell'));
+    if (cells.length !== 30) return false;
+
+    const board = [];
+
+    for (let i = 0; i < 30; i += 6) {
+      board.push(cells.slice(i, i + 6));
+    }
+
+    const lines = [];
+    for (let r = 0; r < 5; r++) {
+      lines.push(board[r]);
+    }
+    for (let c = 0; c < 6; c++) {
+      lines.push(board.map(row => row[c]));
+    }
+
+    return lines.some((line) => line.every((cell) => cell.dataset.isFree === 'true' || cell.dataset.tick === 'true'));
+  }
+
+  function toggleDaubCell(cell) {
+    if (!cell || cell.dataset.isFree === 'true') return;
+
+    const cellNumber = Number(cell.dataset.number);
+    if (currentDrawnNumber === null || Number.isNaN(cellNumber) || cellNumber !== currentDrawnNumber) {
+      return;
+    }
+
+    if (cell.dataset.tick !== 'true') {
+      cell.dataset.tick = 'true';
+      applyBingoCellStyles();
+      updateCurrentMatchGlow();
+    }
+
+    if (hasUltimateBingo()) {
+      showBingoWinnerPopup(true);
+    } else if (hasBingo()) {
+      showBingoWinnerPopup();
+    }
+  }
+
+  function autoMarkMatchingNumbers() {
+    if (!gridMatrix) return;
+
+    const cells = gridMatrix.querySelectorAll('.bingo-cell');
+    cells.forEach((cell) => {
+      if (cell.dataset.isFree === 'true') return;
+
+      const cellNumber = Number(cell.dataset.number);
+      if (!Number.isNaN(cellNumber) && currentDrawnNumber !== null && cellNumber === currentDrawnNumber) {
+        cell.dataset.tick = 'true';
+        cell.animate(
+          [
+            { transform: 'scale(1)', opacity: '0.75' },
+            { transform: 'scale(1.08)', opacity: '1' },
+            { transform: 'scale(1)', opacity: '1' }
+          ],
+          { duration: 500, easing: 'ease-out' }
+        );
+      }
+    });
+
+    applyBingoCellStyles();
+    updateCurrentMatchGlow();
+
+    if (hasUltimateBingo()) {
+      showBingoWinnerPopup(true);
+    } else if (hasBingo()) {
+      showBingoWinnerPopup();
+    }
+  }
+
+  // Apply the complete Firebase draw history to the card. This keeps a card
+  // correct even when a player opens the page after several balls were called.
+  window.syncOfficialDaub = (drawnNumbers = [], currentBall = null) => {
+    if (!gridMatrix) return;
+
+    const drawnSet = new Set(drawnNumbers.map(Number).filter((number) => Number.isInteger(number)));
+    currentDrawnNumber = Number.isInteger(Number(currentBall)) ? Number(currentBall) : null;
+
+    gridMatrix.querySelectorAll('.bingo-cell').forEach((cell) => {
+      if (cell.dataset.isFree === 'true') {
+        cell.dataset.tick = 'true';
+        return;
+      }
+
+      const cellNumber = Number(cell.dataset.number);
+      const shouldTick = Number.isInteger(cellNumber) && drawnSet.has(cellNumber);
+      const wasTicked = cell.dataset.tick === 'true';
+      cell.dataset.tick = String(shouldTick);
+
+      if (shouldTick && !wasTicked) {
+        cell.animate(
+          [
+            { transform: 'scale(1)', opacity: '0.75' },
+            { transform: 'scale(1.08)', opacity: '1' },
+            { transform: 'scale(1)', opacity: '1' }
+          ],
+          { duration: 500, easing: 'ease-out' }
+        );
+      }
+    });
+
+    renderQuestionSlots();
+    applyBingoCellStyles();
+    updateCurrentMatchGlow();
+
+    if (hasUltimateBingo()) {
+      showBingoWinnerPopup(true);
+    } else if (hasBingo()) {
+      showBingoWinnerPopup();
+    }
+  };
+
+  function buildRandomCard() {
+    if (!gridMatrix) return;
+
+    bingoShown = false;
+    ultimateWinnerShown = false;
+    hideBingoPopup();
+    hideUltimateWinnerPopup();
+
+    const columnNames = ['E', 'T', 'I', 'Q', 'A', 'N'];
+
+    let cellsHtml = '';
+    for (let r = 0; r < 5; r++) {
+      for (let c = 0; c < 6; c++) {
+        const cellIndex = r * 6 + c;
+        const columnName = columnNames[c];
+
+        cellsHtml += `
+          <div class="bingo-cell min-h-[108px] sm:min-h-[118px] lg:min-h-[132px] bg-slate-50/70 text-on-surface p-2 flex flex-col items-center justify-center relative border border-outline-variant/20 text-center leading-tight" data-column="${columnName}" data-row="${r + 1}" data-cell-index="${cellIndex}" data-tick="false">
+            <div class="etiqan-question w-full max-h-[96px] overflow-y-auto break-words text-[11px] sm:text-xs leading-snug font-semibold" data-question-slot="${cellIndex}"></div>
+          </div>`;
+      }
+    }
+
+    gridMatrix.innerHTML = cellsHtml;
+    assignBingoCellMeta();
+    renderQuestionSlots();
+    applyBingoCellStyles();
+    updateCurrentMatchGlow();
+  }
+
+  const rerollBtn = document.getElementById('rerollCardBtn');
+  if (rerollBtn && gridMatrix) {
+    rerollBtn.addEventListener('click', () => {
+      rerollBtn.disabled = true;
+      rerollBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-base">sync</span><span>Shuffling...</span>';
+      setTimeout(() => {
+        buildRandomCard();
+        rerollBtn.disabled = false;
+        rerollBtn.innerHTML = '<span class="material-symbols-outlined text-base">shuffle</span><span>Randomize ETIQAN Card</span>';
+      }, 350);
+    });
+  }
+
+  if (gridMatrix) {
+    const isSpectatorMode = new URLSearchParams(window.location.search).get('mode') === 'spectate';
+    if (isSpectatorMode) {
+      gridMatrix.style.pointerEvents = 'none';
+      gridMatrix.style.opacity = '0.82';
+    }
+
+    assignBingoCellMeta();
+    new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.target?.classList?.contains('bingo-cell')) {
+          renderQuestionSlot(mutation.target);
+        }
+      });
+    }).observe(gridMatrix, {
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['data-question']
+    });
+    gridMatrix.addEventListener('click', (event) => {
+      if (isSpectatorMode) return;
+      const cell = event.target.closest('.bingo-cell');
+      if (!cell) return;
+      toggleDaubCell(cell);
+    });
+  }
+
+  if (closeBingoPopupBtn) {
+    closeBingoPopupBtn.addEventListener('click', hideBingoPopup);
+  }
+
+  if (claimWinnerRewardBtn) {
+    claimWinnerRewardBtn.addEventListener('click', () => {
+      claimWinnerRewardBtn.textContent = 'Reward Claimed';
+      claimWinnerRewardBtn.disabled = true;
+      claimWinnerRewardBtn.classList.add('opacity-70', 'cursor-not-allowed');
+      setTimeout(hideBingoPopup, 700);
+    });
+  }
+
+  const hideUltimateWinnerPopup = () => {
+    if (ultimateWinnerPopup) {
+      ultimateWinnerPopup.classList.add('hidden');
+      ultimateWinnerPopup.classList.remove('flex');
+    }
+  };
+
+  closeUltimateWinnerBtn?.addEventListener('click', hideUltimateWinnerPopup);
+  claimUltimateWinnerBtn?.addEventListener('click', () => {
+    claimUltimateWinnerBtn.textContent = 'Ultimate Reward Claimed';
+    claimUltimateWinnerBtn.disabled = true;
+    claimUltimateWinnerBtn.classList.add('opacity-70', 'cursor-not-allowed');
+    setTimeout(hideUltimateWinnerPopup, 700);
+  });
+
+  if (bingoPopup) {
+    bingoPopup.addEventListener('click', (event) => {
+      if (event.target === bingoPopup) hideBingoPopup();
+    });
+  }
+
+  // Replace the legacy 5x5 sample markup with the live 6x5 ETIQAN card.
+  buildRandomCard();
+})();
+</script>
+<script type="module" src="../script.js"></script>
+<script type="module" src="../winners-radar.js"></script>
+<script type="module" src="../bingo-card-sync.js"></script>
+<script type="module" src="../pattern-progress.js"></script>
+<script type="module" src="../live-draw.js"></script>
+</body></html>
+
+
+
+
